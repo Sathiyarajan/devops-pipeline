@@ -1,6 +1,11 @@
 # best-project
 sample project
 
+#ssh localhost setup
+
+#Ansible playbook run
+ansible-playbook install-site.yml -vv -i hosts 
+
 #docker commands for practice
  
 docker build -t sathyadev/flaskapp:1.1 .
