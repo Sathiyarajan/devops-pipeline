@@ -69,4 +69,54 @@ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 
 localhost:8080
 
+sudo apt install default-jdk
+
+sudo apt install default-jdk
+
+sudo wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+
+sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+
+sudo apt-get update
+
+sudo apt-get install jenkins
+
+sudo systemctl status jenkins
+
+sudo ufw allow 8080
+
+sudo ufw status
+
+sudo ufw enable
+
+sudo systemctl start jenkins
+
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+
+localhost:8080
+
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+
+localhost:8080
+
+git commands:
+
+to commit a code:
+
+to download a repo:
+git clone https://github.com/Sathiyarajan/best-project.git
+
+to create a branch 
+git checkout -b besant_sathya
+
+git status
+
+add files
+
+git add .
+
+git commit -m "commit message"
+
+git push origin besant_sathya
+
 
