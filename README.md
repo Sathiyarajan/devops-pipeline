@@ -1,127 +1,157 @@
 # best-project
 sample project
 
-#ssh localhost setup
+# Devops pipeline for UBUNTU 18.04
 
-#Ansible playbook run
-ansible-playbook install-site.yml -vv -i hosts 
+# ssh localhost setup
+`ssh localhost`
 
-#docker commands for practice
+# Ansible version check
+
+[root@ubuntu best-project (main)]$ 
+`ansible --version
+
+ansible 2.8.5
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = [u'/root/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/local/lib/python2.7/dist-packages/ansible
+  executable location = /usr/local/bin/ansible
+  python version = 2.7.17 (default, Sep 30 2020, 13:38:04) [GCC 7.5.0]`
+
+
+# Ansible playbook run
+
+`ansible-playbook install-site.yml -vv -i hosts` 
+
+
+# docker commands
  
-docker build -t sathyadev/flaskapp:1.1 .
+# remove older version
 
-docker run -ti 5103c1f975dc /bin/bash
+`sudo apt-get remove docker docker-engine docker.io containerd runc`
 
-docker run -d -p 5000:5000 8f6adb7689b5
+`sudo apt-get update`
 
-docker logs 5103c1f975dc
+`sudo apt-get install 
+    apt-transport-https 
+    ca-certificates 
+    curl 
+    gnupg-agent 
+    software-properties-common`
 
-[root@ubuntu dockerized-components ]$ curl http://localhost:5000             
-Hello World!#                 
+`curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -`
 
-docker logout
-docker login
- 
+`sudo apt-key fingerprint 0EBFCD88`
+
+`sudo add-apt-repository
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu 
+   $(lsb_release -cs) 
+   stable"`
+   
+`sudo apt-get update`
+
+`sudo apt-get install docker-ce docker-ce-cli containerd.io`
+
+# to build a code & docker image:
+
+`git clone https://github.com/Sathiyarajan/best-project.git`
+
+`cd best-project/docker`
+
+`docker build -t <dockerhub_username>/flaskapp:1.1 .`
+
+`docker run -ti 5103c1f975dc /bin/bash`
+
+`docker run -d -p 5000:5000 8f6adb7689b5`
+
+`docker logs 5103c1f975dc`
+
+`docker logout`
+
+`docker login`
+
+
 curl http://localhost:5000             
 Hello World!#                 
 
-docker push sathyadev/flaskapp:1.1
-docker pu sathyadev/flaskapp:1.1
+`docker push sathyadev/flaskapp:1.1`
 
-docker rmi -f <imaegeId>
-docker rm -f <containerId>
+`docker pull sathyadev/flaskapp:1.1`
 
+`docker rmi -f <imaegeId>`
+
+`docker rm -f <containerId>`
 
 # jenkins installation in ubuntu & AWS:
-
-Jenkins installation ubuntu:
-in AWS: 
-jenkins ci aws :
 
 https://medium.com/@Marklon/how-to-install-jenkins-on-ubuntu-16-04-on-aws-e584c45c2684
 
 https://medium.com/@kryptonian1111/installing-jenkins-on-ec2-9bb51d8bd670
 
+# installation steps
+`sudo apt install default-jdk`
 
-sudo apt install default-jdk
-sudo apt install default-jdk
-sudo wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
-sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
-sudo apt-get update
-sudo apt-get install jenkins
-sudo systemctl status jenkins
-sudo ufw allow 8080
-sudo ufw status
-sudo ufw enable
-cat /var/lib/jenkins/secrets/initialAdminPassword
-sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+`sudo apt install default-jdk`
 
-sudo systemctl start jenkins
+`sudo wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -`
 
-YOURPORT=8080
-PERM="--permanent"
-SERV="$PERM --service=jenkins"
+`sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'`
 
-firewall-cmd $PERM --new-service=jenkins
-firewall-cmd $SERV --set-short="Jenkins ports"
-firewall-cmd $SERV --set-description="Jenkins port exceptions"
-firewall-cmd $SERV --add-port=$YOURPORT/tcp
-firewall-cmd $PERM --add-service=jenkins
-firewall-cmd --zone=public --add-service=http --permanent
-firewall-cmd --reload
+`sudo apt-get update`
 
-sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+`sudo apt-get install jenkins`
 
-localhost:8080
+# to check the status of jenkins installation
 
-sudo apt install default-jdk
+`sudo systemctl status jenkins`
 
-sudo apt install default-jdk
+# enable the 8080 port for Jenkins CI UI
 
-sudo wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+`sudo ufw allow 8080`
 
-sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+`sudo ufw status`
 
-sudo apt-get update
+`sudo ufw enable`
 
-sudo apt-get install jenkins
+# to start jenkins 
 
-sudo systemctl status jenkins
+`sudo systemctl start jenkins`
 
-sudo ufw allow 8080
+# login to jenkins and proceed with the next steps:
 
-sudo ufw status
+`https://localhost:8080`
 
-sudo ufw enable
+# get the password & proceed with the next steps:
 
-sudo systemctl start jenkins
-
-sudo cat /var/lib/jenkins/secrets/initialAdminPassword
-
-localhost:8080
-
-sudo cat /var/lib/jenkins/secrets/initialAdminPassword
-
-localhost:8080
-
-git commands:
-
-to commit a code:
-
-to download a repo:
-git clone https://github.com/Sathiyarajan/best-project.git
-
-to create a branch 
-git checkout -b besant_sathya
-
-git status
-
-add files
-
-git add .
-
-git commit -m "commit message"
-
-git push origin besant_sathya
+`sudo cat /var/lib/jenkins/secrets/initialAdminPassword`
 
 
+# git commands:
+
+# to download a repo:
+
+`git clone https://github.com/Sathiyarajan/best-project.git`
+
+# to create a branch 
+
+`git checkout -b besant_sathya`
+
+# check the files added
+
+`git status`
+
+# check the difference between local files & remote git repo files
+
+`git diff`
+
+# to add files to a local repo
+
+`git add .`
+
+# commit a fies to local repo
+
+`git commit -m "commit message"`
+
+# push the code to remove git repo
+
+`git push origin besant_sathya`
