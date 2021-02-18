@@ -1,0 +1,8 @@
+[webservers]
+localhost ansible_user=root
+
+[dbservers]
+localhost ansible_host=localhost ansible_user=root
+
+[zookeeper-nodes]
+localhost ansible_host=localhost zookeeper_id=1

@@ -1,0 +1,56 @@
+---
+#
+# Install/run elasticsearch
+#
+
+- name: Install libsemanage-python and dependencies
+  yum: name={{ item }} state=present
+  become: true
+  with_items:
+    - python-semanage
+- name: Install Packages
+  apt: name= state=latest update_cache=yes
+  with_items:
+    - apt-transport-https
+    - ntp
+    - python
+    - tcpdump
+    - wget
+    - openssl
+    - curl
+- name: get apt repo key
+  apt_key:
+    url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    state: present
+
+- name: install apt repo
+  apt_repository:
+    repo: deb https://artifacts.elastic.co/packages/6.x/apt stable main
+    state: present
+    filename: elastic-6.x.list
+    update_cache: yes
+
+- name: install java
+  apt:
+    name: openjdk-8-jre
+    state: present
+    update_cache: yes
+
+- name: install elasticsearch
+  apt:
+    name: elasticsearch
+    state: present
+    update_cache: yes
+
+- name: reload systemd config
+  systemd: daemon_reload=yes
+
+- name: enable service elasticsearch and ensure it is not masked
+  systemd:
+    name: elasticsearch
+    enabled: yes
+    masked: no
+
+- name: ensure elasticsearch is running
+  systemd: state=started name=elasticsearch
+
