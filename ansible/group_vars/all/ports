@@ -1,0 +1,3 @@
+---
+jenkins_ui_port: 9080
+jenkins_intercom_port: "19080"

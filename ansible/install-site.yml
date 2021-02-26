@@ -10,13 +10,27 @@
 #roles:
 # -  hadoop
 
+- name: define container whitelist and a list of log directories
+  hosts: dbservers
+  tasks:
+    - set_fact:
+        docker_containers_whitelist: []
+        log_dirs: []
+      tags: always
+
 - name: Installing elasticsearch in CentOS 7
   hosts: dbservers
   remote_user: root
-
   roles:
    - role:  elasticsearch
      tags: elastic_tag
+
+- name: Installing elasticsearch in CentOS 7
+  hosts: dbservers
+  remote_user: root
+  roles:
+   - role:  jenkins
+     tags: jenkins_tag
 
 #- name: Installing logstash in CentOS 7
 #  hosts: dbservers
