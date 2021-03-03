@@ -1,5 +1,5 @@
 # best-project
-sample project
+sample repository for devops engineers
 
 # Devops pipeline for UBUNTU 18.04
 

@@ -1,6 +1,6 @@
 File system commands:
 
-apt-get -> ubuntu
+apt or apt-get -> ubuntu software
 yum -> redhat
 
 sathya@ubuntu:~$ sudo apt-get install vim
