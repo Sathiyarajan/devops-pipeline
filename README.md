@@ -7,30 +7,33 @@ sample repository for devops engineers
 `ssh localhost`
 # if not then setup ssh by running the below commands:
 
-sudo apt-get install openssh-server openssh-client -y 
+`sudo apt-get install openssh-server openssh-client -y` 
 
 # for local user  
+`cd ~`
 
-ssh-keygen -t rsa -P "" (press enter without typing anything)
+`ssh-keygen -t rsa -P ""` (press enter without typing anything)
 
-cp .ssh/id_rsa.pub .ssh/authorized_keys
+`cp .ssh/id_rsa.pub .ssh/authorized_keys`
 
-ssh localhost
+`ssh localhost`
 
 # for admin user
-sudo su
 
-ssh-keygen -t rsa -P "" (press enter without typing anything)
+`sudo su`
 
-cp .ssh/id_rsa.pub .ssh/authorized_keys
+`cd ~`
 
-ssh localhost
+`ssh-keygen -t rsa -P ""` (press enter without typing anything)
 
+`cp .ssh/id_rsa.pub .ssh/authorized_keys`
+
+`ssh localhost`
 
 # pip 2 & ansible installation
 
-sudo apt install python-pip
-pip install ansible
+`sudo apt install python-pip`
+`pip install ansible`
 
 # Ansible version check
 
@@ -46,9 +49,11 @@ ansible 2.8.5
 
 
 # Ansible playbook run
+`git clone https://github.com/Sathiyarajan/best-project.git`
+
+`cd best-project/ansible`
 
 `ansible-playbook install-site.yml -vv -i hosts` 
-
 
 # docker commands
  
