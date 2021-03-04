@@ -5,6 +5,27 @@ sample repository for devops engineers
 
 # ssh localhost setup
 `ssh localhost`
+# if not then setup ssh by running the below commands:
+
+sudo apt-get install openssh-server openssh-client -y 
+
+# for local user  
+
+ssh-keygen -t rsa -P "" (press enter without typing anything)
+
+cp .ssh/id_rsa.pub .ssh/authorized_keys
+
+ssh localhost
+
+# for admin user
+sudo su
+
+ssh-keygen -t rsa -P "" (press enter without typing anything)
+
+cp .ssh/id_rsa.pub .ssh/authorized_keys
+
+ssh localhost
+
 
 # Ansible version check
 
