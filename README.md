@@ -33,11 +33,11 @@ sample repository for devops engineers
 # pip 2 & ansible installation
 
 `sudo apt install python-pip`
+
 `pip install ansible`
 
 # Ansible version check
 
-[root@ubuntu best-project (main)]$ 
 `ansible --version
 
 ansible 2.8.5
