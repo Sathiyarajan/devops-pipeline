@@ -22,3 +22,79 @@
 
 `aws_access_key_id = **********`
 `aws_secret_access_key = *************************`
+
+# AWS CLI commands: https://docs.aws.amazon.com/cli/latest/reference/ 
+
+# IAM -> Amazon Resource Name -> through CLI.
+
+# create user
+
+`aws iam create-user --user-name raj`
+
+{
+    "User": {
+        "Path": "/",
+        "UserName": "raj",
+        "UserId": "***************",
+        "Arn": "arn:aws:iam::********:user/raj",
+        "CreateDate": "2021-03-04T17:09:58Z"
+    }
+}
+
+# Create Login credentials
+
+`aws iam create-login-profile --generate-cli-skeleton > create-login-profile.json`
+
+`aws iam create-login-profile --cli-input-json file://create-login-profile.json`
+
+{
+    "LoginProfile": {
+        "UserName": "raj",
+        "CreateDate": "2021-03-04T17:12:02Z",
+        "PasswordResetRequired": true
+    }
+}
+
+# Access Key
+`aws iam create-access-key --user-name raj`
+
+{
+    "AccessKey": {
+        "UserName": "raj",
+        "AccessKeyId": "************",
+        "Status": "Active",
+        "SecretAccessKey": "*************",
+        "CreateDate": "2021-03-04T17:10:20Z"
+    }
+}
+
+# Group
+`aws iam add-user-to-group --user-name raj --group-name AdminAccess`
+
+# Policy
+`aws iam attach-user-policy --policy-arn arn:aws:iam:ACCOUNT-ID:aws:policy/AdministratorAccess --user-name Alice (optional)`
+
+# Note: Dont add user to the policy add user to Group instead.
+
+# to list the users
+
+aws iam list-users
+
+{
+    "Users": [
+        {
+            "Path": "/",
+            "UserName": "raj",
+            "UserId": "***********",
+            "Arn": "arn:aws:iam::********:user/raj",
+            "CreateDate": "2021-03-04T17:09:58Z"
+        },
+        {
+            "Path": "/",
+            "UserName": "sathya",
+            "UserId": "**********",
+            "Arn": "arn:aws:iam::*********:user/sathya",
+            "CreateDate": "2021-03-04T16:57:33Z"
+        }
+    ]
+}
