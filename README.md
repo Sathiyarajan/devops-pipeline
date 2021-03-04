@@ -27,6 +27,11 @@ cp .ssh/id_rsa.pub .ssh/authorized_keys
 ssh localhost
 
 
+# pip 2 & ansible installation
+
+sudo apt install python-pip
+pip install ansible
+
 # Ansible version check
 
 [root@ubuntu best-project (main)]$ 
