@@ -16,3 +16,9 @@
 | sa-east-1	         | Sao Paulo	       | `sa-east-1a` `sa-east-1b` `sa-east-1c`
 
 \* *To ensure that resources are distributed across the Availability Zones for these regions, they may differ for each AWS account. You can run `aws ec2 describe-availability-zones --region $REGION` to be sure which ones are available to you.*
+
+
+# IAM -> Add user -> Assign groups -> Add permissions & copy the onetime generated 
+
+`aws_access_key_id = **********`
+`aws_secret_access_key = *************************`
