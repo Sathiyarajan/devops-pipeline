@@ -365,3 +365,15 @@ d
 sathya@ubuntu:~/besant-devops/file$ cat text.txt 
 1,2,3,4,5,6
 a,b,c,d,e,f
+
+sed -i 's/1/11/g' text.txt > text1.txt
+ 2091  sed -i 's/a/aa/g' text1.txt > text2.txt
+ 2092  cat text2.txt
+ 2093  cat text.txt
+ 2094  sed -i 's/a/aa/g' text.txt
+ 2095  cat text.txt
+ 2096  sed -i 's/2/22/g' text.txt
+ 2097  sed -i 's/b/bb/g' text1.txt
+ 2098  cat text.txt
+ 2099  sed -i 's/b/bb/g' text.txt
+
