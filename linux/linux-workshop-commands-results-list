@@ -348,3 +348,20 @@ Trying 142.250.71.4...
 sathya@ubuntu:~$
 
 
+# File Operations
+
+sathya@ubuntu:~/besant-devops/file$ cat text.txt | cut -f2 -d","
+2
+b
+
+sathya@ubuntu:~/besant-devops/file$ cat text.txt | cut -f3 -d","
+3
+c
+
+sathya@ubuntu:~/besant-devops/file$ cat text.txt | cut -f4 -d","
+4
+d
+
+sathya@ubuntu:~/besant-devops/file$ cat text.txt 
+1,2,3,4,5,6
+a,b,c,d,e,f
