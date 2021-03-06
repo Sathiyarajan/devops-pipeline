@@ -18,16 +18,48 @@
 \* *To ensure that resources are distributed across the Availability Zones for these regions, they may differ for each AWS account. You can run `aws ec2 describe-availability-zones --region $REGION` to be sure which ones are available to you.*
 
 
-# IAM -> Add user -> Assign groups -> Add permissions & copy the onetime generated 
+### 1. AWS Account Creation:
+
+a. Click on below given URL to create a new AWS Account.
+
+https://signin.aws.amazon.com/signin?redirect_uri=https%3A%2F%2Fportal.aws.amazon.com%2Fbilling%2Fsignup%3Fredirect_url%3Dhttps%253A%252F%252Faws.amazon.com%252Fregistration-confirmation%26state%3DhashArgs%2523%26isauthcode%3Dtrue&client_id=arn%3Aaws%3Aiam%3A%3A015428540659%3Auser%2Fawssignupportal&forceMobileApp=0
+
+b. Provide the necessary information as like below screenshot for creating a new account.
+
+![image](https://user-images.githubusercontent.com/16596464/110150822-b023bb00-7e05-11eb-9950-757a3dc9ab7b.png)
+![image](https://user-images.githubusercontent.com/16596464/110150884-c92c6c00-7e05-11eb-8242-396f573055a1.png)
+![image](https://user-images.githubusercontent.com/16596464/110151055-fe38be80-7e05-11eb-9248-eba22e69c567.png)
+![image](https://user-images.githubusercontent.com/16596464/110151137-1dcfe700-7e06-11eb-8359-b0aed00a75ee.png)
+
+After providing Contact information, provide Debit / Credit Card Information in Payment Information tab.
+d. On 4th Step, Identity Verification needs to be carried out by typing PIN on your mobile after receiving a call from AWS.
+e. Choose the Support Plan as Basic and Click to proceed further.
+f. Sometimes, Account registration would take 24 hours of time and 2Rs INR would be deducted from your bank and it would be credited back to your account.
+
+
+### IAM -> Add user -> Assign groups -> Add permissions & copy the onetime generated 
 
 `aws_access_key_id = **********`
 `aws_secret_access_key = *************************`
 
-# AWS CLI commands: https://docs.aws.amazon.com/cli/latest/reference/ 
+### AWS CLI commands: https://docs.aws.amazon.com/cli/latest/reference/ 
 
-# IAM -> Amazon Resource Name -> through CLI.
+![image](https://user-images.githubusercontent.com/16596464/110151603-ae0e2c00-7e06-11eb-8128-192fc77e51d8.png)
+![image](https://user-images.githubusercontent.com/16596464/110151671-c4b48300-7e06-11eb-8ddc-73aeb64337de.png)
+![image](https://user-images.githubusercontent.com/16596464/110151687-c8e0a080-7e06-11eb-8d93-25bf2745bf99.png)
+![image](https://user-images.githubusercontent.com/16596464/110151702-ced68180-7e06-11eb-9727-a5150ffa2bfb.png)
+![image](https://user-images.githubusercontent.com/16596464/110151717-d39b3580-7e06-11eb-86c0-de14e6c7b256.png)
+![image](https://user-images.githubusercontent.com/16596464/110151726-d6962600-7e06-11eb-96a1-3d0fbcd91d4e.png)
+![image](https://user-images.githubusercontent.com/16596464/110151742-d9911680-7e06-11eb-8c4e-7bb15871d7f7.png)
+![image](https://user-images.githubusercontent.com/16596464/110151754-dc8c0700-7e06-11eb-8bd3-bd24bbc9fa37.png)
+![image](https://user-images.githubusercontent.com/16596464/110151766-e01f8e00-7e06-11eb-8e3c-d81f24f400bd.png)
+![image](https://user-images.githubusercontent.com/16596464/110151778-e4e44200-7e06-11eb-9ae5-b3d9d3d69a65.png)
 
-# create user
+### Note: After Sign in, it would prompt to change the password. Provide the new password for this sub account and proceed with next steps.
+
+## IAM -> Amazon Resource Name -> through CLI.
+
+### create user
 
 `aws iam create-user --user-name raj`
 
@@ -41,7 +73,7 @@
     }
 }
 
-# Create Login credentials
+### Create Login credentials
 
 `aws iam create-login-profile --generate-cli-skeleton > create-login-profile.json`
 
@@ -55,7 +87,7 @@
     }
 }
 
-# Access Key
+### Access Key
 `aws iam create-access-key --user-name raj`
 
 {
@@ -68,15 +100,15 @@
     }
 }
 
-# Group
+### Group
 `aws iam add-user-to-group --user-name raj --group-name AdminAccess`
 
-# Policy
+### Policy
 `aws iam attach-user-policy --policy-arn arn:aws:iam:ACCOUNT-ID:aws:policy/AdministratorAccess --user-name Alice (optional)`
 
-# Note: Dont add user to the policy add user to Group instead.
+### Note: Dont add user to the policy add user to Group instead.
 
-# to list the users
+### to list the users
 
 aws iam list-users
 
@@ -102,17 +134,17 @@ aws iam list-users
 
 # EC2 
 
-# Creating, displaying, and deleting Amazon EC2 key pairs
+### Creating, displaying, and deleting Amazon EC2 key pairs
 
-# to create a keypair
+### to create a keypair
 
 `aws ec2 create-key-pair --key-name bestvm-key --query 'KeyMaterial' --output text > bestvm-key.pem`
 
-# permission change
+### permission change
 
 `chmod 400 bestvm-key.pem`
 
-# list keypairs
+### list keypairs
 
 `aws ec2 describe-key-pairs --key-name bestvm-key`
 
@@ -128,13 +160,13 @@ aws iam list-users
 }
 
 
-# delete a keypair
+### delete a keypair
 
 `aws ec2 delete-key-pair --key-name bestvm-key`
 
-# Creating, configuring, and deleting security groups for Amazon EC2
+### Creating, configuring, and deleting security groups for Amazon EC2
 
-# create Security Group
+### create Security Group
 
 `aws ec2 create-security-group --group-name ec2-sg --description "Sathya security group"`
 
@@ -172,17 +204,17 @@ aws iam list-users
     ]
 }
 
-# check your ip for CIDR subnetting
+### check your ip for CIDR subnetting
 
 `curl https://checkip.amazonaws.com`
 
 60.243.65.159
 
-# create inbound rules
+### create inbound rules ingress & egress
 
 `aws ec2 authorize-security-group-ingress --group-id sg-038e0cde087d0c2c6 --protocol tcp --port 22 --cidr 60.243.65.0/24 `
 
-# list security group information
+### list security group information
 
 `aws ec2 describe-security-groups --group-names ec2-sg`
 
@@ -226,15 +258,15 @@ aws iam list-users
     ]
 }
 
-# to delete a security group
+### to delete a security group
 
 `aws ec2 delete-security-group --group-id `
 
 `aws ec2 delete-security-group --group-name`
 
-# Launching, listing, and terminating Amazon EC2 instances
+### Launching, listing, and terminating Amazon EC2 instances
 
-# create a EC2 instance:
+### create a EC2 instance:
 
 `aws ec2 run-instances --image-id ami-****** --count 1 --instance-type t2.micro --key-name bestvm-key --security-group-ids sg-******`
 
@@ -342,11 +374,11 @@ aws iam list-users
     "ReservationId": "r-********"
 }
 
-# tag & name creation for the ec2 instance
+### tag & name creation for the ec2 instance
 
 `aws ec2 create-tags --resources i-0c254c9fe5f585deb --tags Key=Name,Value=SathyaLinux`
 
-# list ec2 instances by filtering
+### list ec2 instances by filtering
 
 `aws ec2 describe-instances --filters "Name=instance-type,Values=t2.micro" --query "Reservations[].Instances[].InstanceId"`
 
@@ -356,7 +388,7 @@ aws iam list-users
 `aws ec2 terminate-instances --instance-ids i-0c254c9fe5f585deb`
 
 
-# yet to do
+### yet to do
 
 `aws ec2
 
@@ -371,3 +403,4 @@ aws ec2 stop-instances
 aws ec2 wait instance-running
 
 aws ec2 wait instance-stopped`
+
