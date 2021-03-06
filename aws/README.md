@@ -134,6 +134,72 @@ aws iam list-users
 
 # EC2 
 
+## EC2 Overview 
+
+### EC2 instance types
+
+![image](https://user-images.githubusercontent.com/16596464/110200976-c6be2680-7e86-11eb-91b6-e24ff9ad4f11.png)
+
+ 
+## General Purpose (CPU HDD)
+
+### t2(tiny) instance type: 
+
+`learning & start of development, some basic CPU and memory usage applications`
+
+### m5(medium) instance type: 
+
+`more consistent workloads, solid state drives (SSD)`
+
+# Compute Optimized (CPU SSD)
+
+### c5(compute) instance type:
+
+`scientific modelling, intensive machine learning, or multiplayer gaming SSD backed`
+
+# Memory Optimized (CPU SSD)
+
+### r4 (RAM) instance type:
+
+`in-memory databases, real-time processing of unstructured big data, or Hadoop/Spark clusters`
+
+### x1e(xtreme) instance type:
+
+`full in-memory application or a big data processing engine like Apache Spark or Presto.`
+
+# Accelerated Computing (GPU)
+
+### p3(pictures) instance type:
+
+`computational fluid dynamics, computational finance, seismic analysis, speech recognition, autonomous vehicles`
+
+# Storage Optimized
+
+### h1(HDD) instance type: 
+
+`distributed file systems, network file systems, or data processing applications.`
+
+### i3(IOPS) instance type: 
+`SSD backed,  NoSQL databases, in-memory databases, Elasticsearch`
+
+## Note: to check a IOPS of a disk run the below commands
+
+### sudo hdparm -Tt /dev/sda
+
+/dev/sda:
+ Timing cached reads:   20132 MB in  1.99 seconds = 10092.59 MB/sec
+ Timing buffered disk reads: 564 MB in  3.01 seconds = 187.55 MB/sec
+ 
+### dd if=/dev/zero of=/tmp/output bs=8k count=10k; rm -f /tmp/output
+
+1024+0 records in
+1024+0 records out
+402653184 bytes (403 MB, 384 MiB) copied, 3.0272 s, 133 MB/s
+
+### d2(dense) instance type:
+
+`Massively Parallel Processing (MPP), MapReduce and Hadoop distributed computing`
+
 ### Creating, displaying, and deleting Amazon EC2 key pairs
 
 ### to create a keypair
