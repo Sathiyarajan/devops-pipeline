@@ -1,5 +1,50 @@
-# docker notes
+# docker overview
  
+### Hypervisor-based VS Container-based
+
+![image](https://user-images.githubusercontent.com/16596464/110250323-b8fcc400-7fa0-11eb-8c8f-39fc3d1e6ef4.png)
+
+### Architecture
+
+![image](https://user-images.githubusercontent.com/16596464/110250347-db8edd00-7fa0-11eb-9a31-2f8e023da3b6.png)
+
+### Images
+
+```
+• Images are read only templates used to create containers.
+• Images are created with the docker build command, either
+by us or by other docker users.
+• Images are composed of layers of other images.
+• Images are stored in a Docker registry.
+```
+
+### containers
+
+```
+If an image is a class, then a container is an instance of a
+class - a run=me object.
+• Containers are lightweight and portable encapsula=ons of
+an environment in which to run applica=ons.
+• Containers are created from images. Inside a container, it
+has all the binaries and dependencies needed to run the
+application.
+```
+
+### Docker Compose Commands
+
+```
+• docker compose up starts up all the containers.
+• docker compose ps checks the status of the containers managed by docker compose.
+• docker compose logs outputs colored and aggregated logs for the compose-managed
+containers.
+• docker compose logs with dash f op,on outputs appended log when the log grows.
+• docker compose logs with the container name in the end outputs the logs of a specific
+container.
+• docker compose stop stops all the running containers without removing them.
+• docker compose rm removes all the containers.
+• docker compose build rebuilds all the images.
+```
+
 ### docker installation 
 
 ```
