@@ -1,11 +1,6 @@
-# best-project
-sample repository for devops engineers
-
-# Devops pipeline for UBUNTU 18.04
-
-# docker commands
+# docker notes
  
-# docker installation remove older version
+### docker installation 
 
 `sudo apt-get remove docker docker-engine docker.io containerd runc`
 
@@ -31,7 +26,7 @@ sample repository for devops engineers
 
 `sudo apt-get install docker-ce docker-ce-cli containerd.io`
 
-# to build a code & docker image:
+### to build a code & docker image:
 
 `git clone https://github.com/Sathiyarajan/best-project.git`
 
@@ -63,18 +58,11 @@ Hello World!#
 
 Reference: https://github.com/spring-petclinic/spring-framework-petclinic
 
-#run postgres image
-docker run --name postgres-petclinic -e POSTGRES_PASSWORD=petclinic -e POSTGRES_DB=petclinic -p 5432:5432 -d postgres:9.6.0
 
-# run a sample web app
+### run a sample web app
 docker run -p 8080:8080 springcommunity/spring-framework-petclinic
 
-# practice the image build & push it to repo by following the nodejs app
-
 # docker-tutorial-devops
-Learn Docker and Devops from Udemy course. Docker Technologies for DevOps and Developers
-
-Docker Technologies for DevOps and Developers :  
 
 1. Docker
 2. DevOps
@@ -82,6 +70,7 @@ Docker Technologies for DevOps and Developers :
 4. Docker Swarm
 5. Docker Machine
 6. DockerHub
+
 ### Show docker images list
 
 ```
@@ -124,23 +113,23 @@ Docker Technologies for DevOps and Developers :
 ### docker commit to create image
 ```
   docker container ls -a
-  docker commit <container id> smalltides/debian:1.0 (commit a new image from container id)
+  docker commit <container id> sathyadev/debian:1.0 (commit a new image from container id)
   docker images
-  docker history smalltides/debian:1.0
-  docker run -it smalltides/debian:1.0
+  docker history sathyadev/debian:1.0
+  docker run -it sathyadev/debian:1.0
 ```
 ### Docker file to create image
 ```
-  docker build -t smalltides/debian .
+  docker build -t sathyadev/debian .
   docker images
-  docker history smalltides/debian:latest
-  docker build -t smalltides/debian:latest . --no-cache=true (no cache mode)
+  docker history sathyadev/debian:latest
+  docker build -t sathyadev/debian:latest . --no-cache=true (no cache mode)
 ```
 ### push docker image to docker hub
 ```
   docker login (must login docker hub)
-  docker tag <image id> smalltides/debian:1.01
-  docker push smalltides/debian:1.01
+  docker tag <image id> sathyadev/debian:1.01
+  docker push sathyadev/debian:1.01
 ```
 ### use Dcokerfile to create a containerize python app
 ```
@@ -159,7 +148,6 @@ Docker Technologies for DevOps and Developers :
 ```
 ### use docker --link to link a two container(flask and redis) app
 ```
-  git clone -b v0.3 git@github.com:smalltide/dockerapp.git dockerapp0.3
   cd dockerapp0.3
   docker build -t dockerapp:v0.3 .
   docker images
@@ -179,7 +167,7 @@ Docker Technologies for DevOps and Developers :
   docker-compose rm
   docker-compose build (force rebuild)
 ```
-four types docker network
+### four types docker network
 ```
   (None Network, support one host network)
   docker network ls
