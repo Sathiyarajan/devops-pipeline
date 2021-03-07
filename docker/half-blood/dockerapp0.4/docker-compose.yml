@@ -1,0 +1,19 @@
+version: '2'
+services:
+  dockerapp:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./app:/app
+    networks:
+      - my_net
+
+  redis:
+    image: redis:3.2.0
+    networks:
+       - my_net
+     
+networks:
+  my_net:
+    driver: bridge
