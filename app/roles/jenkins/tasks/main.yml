@@ -1,0 +1,36 @@
+---
+- name: create directories for jenkins
+  file: path="{{ item }}" state=directory mode=0777
+  with_items:
+    - "{{ jenkins_host_dir }}"
+    - "{{ jenkins_data_dir }}"
+    - "{{ jenkins_tmp_dir }}"
+
+- name: create a symbolic link for jenkins data directory
+  file: src="{{ jenkins_data_dir }}" dest="{{ jenkins_host_dir }}/data" state=link
+
+- name: create a symbolic link for jenkins tmp directory
+  file: src="{{ jenkins_tmp_dir }}" dest="{{ jenkins_host_dir }}/tmp" state=link
+
+- name: add container to whitelist
+  set_fact: docker_containers_whitelist="{{ docker_containers_whitelist }} + [ 'jenkins' ]"
+  tags: always
+
+- name: start jenkins
+  docker_container:
+    name: jenkins
+    state: started
+    restart_policy: on-failure
+    image: jenkins:2.19.4
+    network_mode: host
+    log_driver: "{{ docker_logging_driver }}"
+    env:
+      JENKINS_OPTS: "--httpPort={{jenkins_ui_port}}"
+      JENKINS_SLAVE_AGENT_PORT: "{{ jenkins_intercom_port }}"
+      CURL_OPTIONS: -sSfLk
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "/sys:/sys"
+      - "/proc:/host/proc:ro"
+      - "{{ jenkins_host_dir }}/tmp:/tmp"
+      - "{{ jenkins_host_dir }}/data:/var/jenkins_home"

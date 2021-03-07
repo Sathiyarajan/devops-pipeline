@@ -1,15 +1,30 @@
 # best-project
-sample repository for devops engineers
 
-# Devops pipeline for UBUNTU 18.04
+Reference repository for devops engineers
+
+
+# Ansible
+
+## ansible docker image for setting up ansible
+
+`docker build -t sathyadev/ubuntu-ansible:18.04 .`
+
+`sudo docker run --net=host --rm -it -v $(pwd)/app/:/app:ro -v $HOME/.ssh:/root/.ssh 07acb63e26a9 bash`
+
+### to run ansible playbook run the below commands
+
+`ansible-playbook install-site.yml -vv -i hosts`
 
 # ssh localhost setup
+
 `ssh localhost`
+
 # if not then setup ssh by running the below commands:
 
 `sudo apt-get install openssh-server openssh-client -y` 
 
 # for local user  
+
 `cd ~`
 
 `ssh-keygen -t rsa -P ""` (press enter without typing anything)
@@ -30,7 +45,7 @@ sample repository for devops engineers
 
 `ssh localhost`
 
-# pip 2 & ansible installation
+# pip2 & ansible installation
 
 `sudo apt install python-pip`
 
@@ -49,6 +64,7 @@ ansible 2.8.5
 
 
 # Ansible playbook run
+
 `git clone https://github.com/Sathiyarajan/best-project.git`
 
 `cd best-project/ansible`
