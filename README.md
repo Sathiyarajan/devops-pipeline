@@ -5,6 +5,7 @@ Reference repository for devops engineers
 
 # Ansible
 
+
 ### ansible docker image for setting up ansible
 
 `docker build -t sathyadev/ubuntu-ansible:18.04 .`
@@ -14,6 +15,16 @@ Reference repository for devops engineers
 ### to run ansible playbook run the below commands
 
 `ansible-playbook install-site.yml -vv -i hosts`
+
+# ssh localhost setup
+
+`ssh localhost`
+
+# if not then setup ssh by running the below commands:
+
+`sudo apt-get install openssh-server openssh-client -y` 
+
+# for local user  
 
 # SSH - secure shell
 
@@ -47,6 +58,8 @@ Reference repository for devops engineers
 
 `ssh localhost`
 
+# pip2 & ansible installation
+
 ### pip2 & ansible installation
 
 `sudo apt install python-pip`
@@ -64,6 +77,8 @@ ansible 2.8.5
   executable location = /usr/local/bin/ansible
   python version = 2.7.17 (default, Sep 30 2020, 13:38:04) [GCC 7.5.0]`
 
+
+# Ansible playbook run
 
 ### Ansible playbook run
 
