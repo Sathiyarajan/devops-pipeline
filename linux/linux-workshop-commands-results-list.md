@@ -1,7 +1,25 @@
-File system commands:
 
-apt or apt-get -> ubuntu software
-yum -> redhat
+# cosmetic commands 
+
+### whoami
+### hostname
+### ifconfig
+### env
+### clear
+
+### alias
+
+```
+cd /home/sathya/devops-pipeline/
+cd
+
+vim alias-devops.sh
+alias devops="cd /home/sathya/devops-pipeline/"
+esc key + :wq! + enter
+source alias-devops.sh
+devops
+pwd
+```
 
 ### sudo apt-get install vim
 
