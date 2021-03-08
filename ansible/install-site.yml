@@ -13,7 +13,7 @@
 - name: define container whitelist and a list of log directories
   hosts: dbservers
   tasks:
-    - set_fact:
+    - setw_fact:
         docker_containers_whitelist: []
         log_dirs: []
       tags: always
