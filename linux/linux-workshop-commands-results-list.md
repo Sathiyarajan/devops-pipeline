@@ -3,7 +3,8 @@ File system commands:
 apt or apt-get -> ubuntu software
 yum -> redhat
 
-sathya@ubuntu:~$ sudo apt-get install vim
+### sudo apt-get install vim
+
 [sudo] password for sathya:
 Reading package lists... Done
 Building dependency tree
@@ -16,7 +17,7 @@ Use 'sudo apt autoremove' to remove it.
 sathya@ubuntu:~$
 
 
-wget https://archive.apache.org/dist/hadoop/core/hadoop-2.6.5/hadoop-2.6.5.tar.gz
+### wget https://archive.apache.org/dist/hadoop/core/hadoop-2.6.5/hadoop-2.6.5.tar.gz
 
 
 sathya@ubuntu:~/shell-test$ wget https://archive.apache.org/dist/hadoop/core/hadoop-2.6.5/hadoop-2.6.5.tar.gz
@@ -31,7 +32,7 @@ hadoop-2.6.5.tar.gz        100%[=====================================>] 190.39M 
 
 2021-02-21 04:56:41 (8.31 MB/s) - ‘hadoop-2.6.5.tar.gz’ saved [199635269/199635269]
 
-sathya@ubuntu:~/shell-test$ tar -xvf hadoop-2.6.5.tar.gz
+### tar -xvf hadoop-2.6.5.tar.gz
 
 
 sathya@ubuntu:~/shell-test$ du -hs
