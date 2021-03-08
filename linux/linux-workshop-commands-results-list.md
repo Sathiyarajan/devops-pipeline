@@ -381,3 +381,34 @@ a,b,c,d,e,f
 sed -i 's/1/11/g' text.txt
 sed -i 's/a/aa/g' text.txt
 ```
+
+
+### shell scripting
+
+
+### for loop 
+
+```
+code : 
+
+names = (A B C D)
+
+test_method() {
+
+for x in  ${names[@]} 
+do
+echo $x
+done
+} 
+
+result: 
+sh-4.2$ names=(A B C D)
+sh-4.2$ test_method() { for x in  ${names[@]} ; do echo $x; done; }
+sh-4.2$ test_method
+A
+B
+C
+D
+sh-4.2$
+```
+
