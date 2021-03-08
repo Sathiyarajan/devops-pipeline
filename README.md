@@ -1,6 +1,6 @@
-# best-project
+# devops-bible
 
-Reference repository for devops engineers
+Reference repository for Devops engineers
 
 
 # Ansible
