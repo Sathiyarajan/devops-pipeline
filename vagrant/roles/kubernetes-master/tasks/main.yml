@@ -1,0 +1,58 @@
+---
+
+- name: create directories
+  file: path="{{ item }}" state=directory
+  with_items:
+    - "/etc/kubernetes"
+    - "/var/log/kubernetes/audit"
+    - "{{ kubernetes_host_dir }}/conf"
+
+- name: copy audit policy config
+  template: src=templates/audit-policy.yaml dest="/etc/sysctl.d/audit-policy.yaml"
+
+- name: copy kubernetes configs
+  template: src=templates/kubeadm-config.yml.j2 dest="{{ kubernetes_host_dir }}/conf/kubeadm-config.yml"
+  when: inventory_hostname == groups["master-nodes"][0]
+
+- name: Checking if kubernetes control pane is running
+  shell: kubectl get cs
+  register: cluster_health
+  ignore_errors: yes
+
+- import_tasks: initiate_master.yml
+  when: inventory_hostname == groups["master-nodes"][0]
+
+- import_tasks: join_master.yml
+  when: inventory_hostname != groups["master-nodes"][0]
+
+- meta: flush_handlers
+
+- name: Copying required files
+  shell: |
+   mkdir -p $HOME/.kube
+   cp -f /etc/kubernetes/admin.conf ~/.kube/config
+   chown $(id -u):$(id -g) ~/.kube/config
+  when: cluster_health.rc != 0
+
+# TODO: OpenShift Python module error
+# - name: >-
+#     Read network definition template from the Ansible controller file system.
+#     Jinja templating will be automatically applied.
+#   k8s:
+#     state: present
+#     definition: "{{ lookup('template','templates/kube-flannel.yml.j2') }}"
+
+- name: copy kubernetes network add-on config
+  template: src=templates/kube-canal.yml.j2 dest="{{ kubernetes_host_dir }}/conf/kube-canal.yml"
+  notify: install network add-on
+  run_once: true
+
+- meta: flush_handlers
+
+- name: Wait for master to be ready
+  shell: "kubectl get nodes"
+  register: nodes
+  until:
+    - '" NotReady " not in nodes.stdout'
+  retries: 30
+  delay: 10

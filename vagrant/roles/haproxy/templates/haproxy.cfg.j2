@@ -1,0 +1,37 @@
+global
+    log 127.0.0.1   local0 info
+    maxconn 512000
+    daemon
+    stats socket /var/haproxy/haproxy.sock mode 600 level admin
+    stats timeout 2m
+    external-check
+    pidfile /dev/null
+
+defaults
+    log global
+    option dontlognull
+    option httplog
+    mode http
+    retries 2
+    timeout connect 5000
+
+frontend f_kube_apiserver
+  bind *:{{ kube_apiserver_frontend_port }} backlog 65534
+  mode tcp
+  option tcplog
+  timeout client 300000
+  default_backend b_kube_apiserver
+
+backend b_kube_apiserver
+  mode tcp
+  option tcplog
+  option tcp-check
+  retries 2
+  balance source
+  timeout connect 1000
+  timeout server 300000
+  balance roundrobin
+  default-server inter 10s downinter 5s rise 2 fall 2 slowstart 60s maxconn 250 maxqueue 256 weight 100
+  {% for host in groups['master-nodes']|sort %}
+    server {{ hostvars[host].inventory_hostname }} {{ hostvars[host].net_internal_ip }}:{{ kube_apiserver_port }} check
+  {% endfor %}

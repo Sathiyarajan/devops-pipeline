@@ -1,0 +1,12 @@
+apiVersion: kubeadm.k8s.io/v1beta2
+kind: ClusterConfiguration
+kubernetesVersion: stable
+controlPlaneEndpoint: {{ controlPlaneEndpoint }}
+networking:
+  podSubnet: {{ podSubnet }}
+etcd:
+    external:
+        endpoints:
+{% for host in groups['master-nodes'] %}
+        - http://{{ hostvars[host].net_internal_ip }}:{{ etcd_client_port }}
+{% endfor %}

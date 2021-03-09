@@ -1,0 +1,4 @@
+---
+hostname: node2
+int_server_id: 2
+net_internal_ip: 192.168.120.12

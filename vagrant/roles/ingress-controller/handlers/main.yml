@@ -1,0 +1,5 @@
+---
+- name: apply configs
+  shell: |
+    kubectl apply -f {{ kubernetes_host_dir }}/conf/kubernetes-dashboard.yml
+    kubectl apply -f {{ kubernetes_host_dir }}/conf/dashboard-adminuser.yml
