@@ -1,4 +1,4 @@
-# Kubernetes-Ansible-CentOS7
+# Kubernetes-Ansible-CentOS7 pipeline
 This project includes a Vagrantfile and Ansible Playbook which allows you to deploy a scalable High-Availability Kubernetes cluster in your local cluster running 4 CentOS7 Virtual Machines (using vagrant and virtualbox). This playbook can be easily extended for deployment on Bare Metal/AWS EC2/Google Compute Engine instances and can be used as a foundation for deployment into a production environment.
 https://medium.com/@nilanthanb1994/kubernetes-ha-cluster-with-ansible-vagrant-centos-a7f5d368dc11
 
