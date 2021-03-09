@@ -1,0 +1,28 @@
+[vagrant]
+node1 ansible_host=192.168.120.11
+node2 ansible_host=192.168.120.12
+node3 ansible_host=192.168.120.13
+node4 ansible_host=192.168.120.14
+
+[vagrant:vars]
+ansible_python_interpreter=/usr/bin/python
+
+[all-servers:children]
+vagrant
+
+[admin-tasks]
+node1
+
+[master-nodes]
+node1
+node2
+
+[worker-nodes]
+node3
+node4
+
+[haproxy:children]
+all-servers
+
+[etcd:children]
+master-nodes

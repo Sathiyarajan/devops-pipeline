@@ -1,0 +1,6 @@
+---
+
+yum_epel_repos:
+  - name: epel
+    description: Extra Packages for Enterprise Linux 7 - $basearch
+    baseurl: http://ftp.tudelft.nl/fedora-epel/7/$basearch

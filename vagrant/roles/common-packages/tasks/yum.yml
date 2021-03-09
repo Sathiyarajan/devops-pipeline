@@ -1,0 +1,36 @@
+---
+
+- name: add /etc/yum.repos.d/docker.repo
+  template:
+    src: "docker.repo.j2"
+    dest: "/etc/yum.repos.d/docker.repo"
+
+- name: add /etc/yum.repos.d/docker.repo
+  template:
+    src: "kubernetes.repo.j2"
+    dest: "/etc/yum.repos.d/kubernetes.repo"
+
+- yum: name=yum state=latest
+
+- name: install epel-release
+  yum: name=epel-release state=installed
+
+- name: Install tools
+  yum: name={{ item }} state=installed
+  with_items:
+    - yum-utils
+    - device-mapper-persistent-data
+    - lvm2
+    - epel-release
+    - nc
+    - net-tools
+    - vim-enhanced
+    - telnet
+    - jq
+    - tcpdump
+    - firewalld
+    - rsync
+    - sysstat
+    - tree
+    - iotop
+    - nfs-utils

@@ -1,0 +1,3 @@
+---
+- name: restart haproxy
+  set_fact: haproxy_restart_docker=yes

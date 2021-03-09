@@ -1,0 +1,4 @@
+---
+
+- import_tasks: yum.yml
+- import_tasks: pip.yml

@@ -1,0 +1,48 @@
+---
+
+- name: Starting and Enabling firewalld
+  service:
+    name: firewalld
+    state: started
+    enabled: yes
+
+- name: update /etc/hosts file
+  lineinfile:
+    path: "/etc/hosts"
+    regexp: "{{ hostvars[item]['hostname'] }}\t{{ hostvars[item]['net_internal_ip'] }}"
+    line: "{{ hostvars[item]['hostname'] }}\t{{ hostvars[item]['net_internal_ip'] }}"
+    state: present
+    backup: yes
+  with_items: "{{ groups['vagrant'] }}"
+
+- name: set hostname
+  hostname: name={{ hostname }}
+
+- set_fact:
+    firewalld_ports: "{{ master_node_ports }}"
+  when: "'master-nodes' in group_names"
+
+- set_fact:
+    firewalld_ports: "{{ worker_node_ports }}"
+  when: "'worker-nodes' in group_names"
+
+- name: Allow Network Ports in Firewalld
+  firewalld:
+    port: "{{ item }}"
+    state: enabled
+    permanent: yes
+    immediate: yes
+  with_items: "{{ firewalld_ports }}"
+
+- name: load netfilter probe
+  modprobe:
+    name: br_netfilter
+    state: present
+
+- name: update kernel settings
+  sysctl:
+    name: net.bridge.bridge-nf-call-iptables
+    value: 1
+    sysctl_set: yes
+    state: present
+    reload: yes

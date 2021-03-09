@@ -1,0 +1,5 @@
+---
+etcd_peer_port: 2380
+etcd_client_port: 2379
+kube_apiserver_frontend_port: 443
+kube_apiserver_port: 6443
