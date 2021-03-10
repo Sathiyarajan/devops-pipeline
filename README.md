@@ -1,5 +1,8 @@
 # devops-bible
+
+
 ### ubuntu subsystem for windows10 # https://www.windowscentral.com/install-windows-subsystem-linux-windows-10
+
 
 Reference repository for Devops engineers
 
@@ -16,6 +19,17 @@ Reference repository for Devops engineers
 ### to run ansible playbook run the below commands
 
 `ansible-playbook install-site.yml -vv -i hosts`
+
+
+### incaseof any issues, follow the commands
+
+```
+  pip list
+  pip uinstall docker 
+  pip uninstall docker
+  pip install docker==="2.5.1"
+  pip install dockerpty==="0.4.1"
+```
 
 # ssh localhost setup
 
