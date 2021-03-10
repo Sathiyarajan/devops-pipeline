@@ -16,6 +16,17 @@ Reference repository for Devops engineers
 
 `ansible-playbook install-site.yml -vv -i hosts`
 
+
+### incaseof any issues, follow the commands
+
+```
+  pip list
+  pip uinstall docker 
+  pip uninstall docker
+  pip install docker==="2.5.1"
+  pip install dockerpty==="0.4.1"
+```
+
 # ssh localhost setup
 
 `ssh localhost`
