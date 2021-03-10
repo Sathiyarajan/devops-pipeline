@@ -1,0 +1,13 @@
+---
+
+hostname: localhost
+
+int_server_id: 0
+
+ansible_become: no
+ansible_become_method: sudo
+ansible_become_user: root
+
+interfaces:
+  lo0:
+    address: 127.0.0.1

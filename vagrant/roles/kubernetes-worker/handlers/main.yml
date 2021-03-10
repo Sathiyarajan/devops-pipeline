@@ -1,0 +1,4 @@
+---
+- name: join worker node
+  set_fact:
+    new_joiner: true

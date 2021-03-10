@@ -1,5 +1,9 @@
 # devops-bible
 
+
+### ubuntu subsystem for windows10 # https://www.windowscentral.com/install-windows-subsystem-linux-windows-10
+
+
 Reference repository for Devops engineers
 
 

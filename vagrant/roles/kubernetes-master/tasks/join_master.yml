@@ -1,0 +1,17 @@
+---
+# TODO: Fix AgentForwarding issue to avoid using ansible host to copy token file across
+# - name: sync token on the rest of the cluster from master node
+#   vars:
+#     ansible_become: False
+#   become: no
+#   command: "sudo rsync -e 'ssh -o StrictHostKeyChecking=no' -az 'vagrant@{{ hostvars[groups['master-nodes'][0]].net_internal_ip }}:{{ kubernetes_host_dir }}/conf/' /tmp"
+#   retries: 3
+#   register: task_result
+#   until: task_result.rc == 0
+#   when:
+#     - not ansible_check_mode
+
+- name: Copying token to worker nodes
+  copy: src={{ kubeadm_join_token_path }} dest={{ kubernetes_host_dir }}/conf/kubeadm_join_token
+  notify: join master replica node
+  when: (kubeadm_join_token_path) | is_file

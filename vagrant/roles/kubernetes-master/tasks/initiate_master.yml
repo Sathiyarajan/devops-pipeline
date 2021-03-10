@@ -1,0 +1,19 @@
+---
+- debug:
+    msg:
+      - "Kubernetes master has not been initialised yet"
+      - "Initializing now..."
+  when: cluster_health.rc != 0
+
+- name: Initializing Kubernetes cluster
+  shell: |
+    kubeadm reset -f
+    kubeadm init --config {{ kubernetes_host_dir }}/conf/kubeadm-config.yml --upload-certs
+  # shell: |
+  #   kubeadm reset -f
+  #   kubeadm init --control-plane-endpoint '192.168.120.11:{{ kube_apiserver_frontend_port }}' --upload-certs --apiserver-advertise-address={{ net_internal_ip }} --pod-network-cidr={{ podSubnet }}
+  register: output
+  when: cluster_health.rc != 0
+
+- local_action: copy content={{ output.stdout }} dest={{ kubeadm_join_token_path }}
+  when: cluster_health.rc != 0

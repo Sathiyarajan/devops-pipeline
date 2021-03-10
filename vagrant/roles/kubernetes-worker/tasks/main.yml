@@ -1,0 +1,49 @@
+---
+
+- name: create directories
+  file: path="{{ kubernetes_host_dir }}/conf" state=directory
+
+# TODO: Fix AgentForwarding issue to avoid using ansible host to copy token file across
+# - name: sync token on the rest of the cluster from master node
+#   vars:
+#     ansible_become: False
+#   become: no
+#   command: "sudo rsync -e 'ssh -o StrictHostKeyChecking=no' -az 'vagrant@{{ hostvars[groups['master-nodes'][0]].net_internal_ip }}:{{ kubernetes_host_dir }}/conf/' /tmp"
+#   retries: 3
+#   register: task_result
+#   until: task_result.rc == 0
+#   when:
+#     - not ansible_check_mode
+
+- name: Copying token to worker nodes
+  copy: src={{ kubeadm_join_token_path }} dest={{ kubernetes_host_dir }}/conf/kubeadm_join_token
+  notify: join worker node
+  when: (kubeadm_join_token_path) | is_file
+
+- meta: flush_handlers
+
+- name: join worker node
+  shell: |
+   kubeadm reset -f
+   cat {{ kubernetes_host_dir }}/conf/kubeadm_join_token | tail -2 | sh
+  when: new_joiner|default(false)
+
+- name: update kube config
+  shell: |
+   mkdir -p $HOME/.kube
+   cp -f /etc/kubernetes/kubelet.conf ~/.kube/config
+   chown $(id -u):$(id -g) ~/.kube/config
+  when: new_joiner|default(false)
+
+- name: Wait for workers to be ready
+  shell: "kubectl get nodes"
+  register: nodes
+  until:
+    - '" NotReady " not in nodes.stdout'
+  retries: 30
+  delay: 10
+  # run_once: true
+
+- name: label worker node
+  shell: kubectl label nodes {{ hostname }} nodetype=worker
+  when: new_joiner|default(false)
