@@ -26,4 +26,4 @@
     - name: requests
       version: 2.22.0
     - name: openshift
-      version: 0.10.1
+      version: 0.10.2
