@@ -1,4 +1,4 @@
-# devops-bible
+# devops-pipeline
 
 
 ![DevopsFlow](https://user-images.githubusercontent.com/16596464/111037516-6876e200-844a-11eb-9828-f2a03d777e5c.jpg)
