@@ -1,13 +1,18 @@
 # devops-bible
 
 
+![DevopsFlow](https://user-images.githubusercontent.com/16596464/111037516-6876e200-844a-11eb-9828-f2a03d777e5c.jpg)
+
+
 ### ubuntu subsystem for windows10 # https://www.windowscentral.com/install-windows-subsystem-linux-windows-10
 
 
-Reference repository for Devops engineers
-
+# dev environment setup repo for Devops engineers
 
 # Ansible
+
+
+![Ansible](https://user-images.githubusercontent.com/16596464/111037559-9e1bcb00-844a-11eb-926b-b2674eb5aa5b.jpg)
 
 
 ### ansible docker image for setting up ansible
@@ -104,7 +109,18 @@ ansible 2.8.5
 `ansible-playbook install-site.yml -vv -i hosts` 
 
 # Docker 
-### docker commands
+
+### without docker
+![Docker](https://user-images.githubusercontent.com/16596464/111037600-cf949680-844a-11eb-8d31-b15905ed9d10.jpg)
+
+
+### after docker
+
+
+![after-docker](https://user-images.githubusercontent.com/16596464/111037688-3fa31c80-844b-11eb-9531-076df8a35c8a.jpg)
+
+
+### docker installation
  
 ### remove older version
 
@@ -237,3 +253,4 @@ https://medium.com/@kryptonian1111/installing-jenkins-on-ec2-9bb51d8bd670
 ### push the code to remove git repo
 
 `git push origin besant_sathya`
+
