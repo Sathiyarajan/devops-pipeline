@@ -202,6 +202,84 @@ aws iam list-users
 
 ### Creating, displaying, and deleting Amazon EC2 key pairs
 
+![image](https://user-images.githubusercontent.com/16596464/111019637-ae9a5a00-83e6-11eb-82f8-c36453952895.png)
+
+![image](https://user-images.githubusercontent.com/16596464/111019638-b3f7a480-83e6-11eb-8a48-b232f0dc4195.png)
+
+![image](https://user-images.githubusercontent.com/16596464/111019641-b6f29500-83e6-11eb-8bd8-4dde41ed7d5a.png)
+
+![image](https://user-images.githubusercontent.com/16596464/111019642-b8bc5880-83e6-11eb-8d2e-cffed789a669.png)
+
+![image](https://user-images.githubusercontent.com/16596464/111019644-bbb74900-83e6-11eb-9c17-791bca98f750.png)
+
+![image](https://user-images.githubusercontent.com/16596464/111019646-beb23980-83e6-11eb-8366-596d993b3282.png)
+
+![image](https://user-images.githubusercontent.com/16596464/111019648-c1ad2a00-83e6-11eb-892d-721529046ade.png)
+
+![image](https://user-images.githubusercontent.com/16596464/111019650-c376ed80-83e6-11eb-9290-aac5ff7ead1a.png)
+
+![image](https://user-images.githubusercontent.com/16596464/111019653-cc67bf00-83e6-11eb-885e-4e4ab46a4dd1.png)
+
+![image](https://user-images.githubusercontent.com/16596464/111019658-ceca1900-83e6-11eb-8ef0-90d8a8063894.png)
+
+![image](https://user-images.githubusercontent.com/16596464/111019663-d689bd80-83e6-11eb-90bf-f64441e95098.png)
+
+![image](https://user-images.githubusercontent.com/16596464/111019665-d984ae00-83e6-11eb-861f-9b47dffd7d1b.png)
+
+![image](https://user-images.githubusercontent.com/16596464/111019670-de496200-83e6-11eb-9a06-36486254b0e4.png)
+
+![image](https://user-images.githubusercontent.com/16596464/111019673-e0abbc00-83e6-11eb-9840-ab1f47a61ee3.png)
+
+![image](https://user-images.githubusercontent.com/16596464/111019678-e99c8d80-83e6-11eb-8f48-e1730df357b3.png)
+
+![image](https://user-images.githubusercontent.com/16596464/111019689-eef9d800-83e6-11eb-9137-664f56513275.png)
+
+![image](https://user-images.githubusercontent.com/16596464/111019694-f1f4c880-83e6-11eb-9c69-0b669908c24a.png)
+
+![image](https://user-images.githubusercontent.com/16596464/111019695-f4572280-83e6-11eb-87ff-a9bb1d16fc1b.png)
+
+![image](https://user-images.githubusercontent.com/16596464/111019696-f6b97c80-83e6-11eb-9580-fba8899dd330.png)
+
+![image](https://user-images.githubusercontent.com/16596464/111019699-f9b46d00-83e6-11eb-892c-e0702585acc6.png)
+
+![image](https://user-images.githubusercontent.com/16596464/111019701-fb7e3080-83e6-11eb-8fe5-34340dd3e267.png)
+
+![image](https://user-images.githubusercontent.com/16596464/111019704-ff11b780-83e6-11eb-9993-2ce0a82bc3b6.png)
+
+![image](https://user-images.githubusercontent.com/16596464/111019705-00db7b00-83e7-11eb-81eb-b21476807d23.png)
+
+![image](https://user-images.githubusercontent.com/16596464/111019708-033dd500-83e7-11eb-86e5-b388ff4f2fcf.png)
+
+![image](https://user-images.githubusercontent.com/16596464/111019711-06d15c00-83e7-11eb-9fe9-616351d36fc8.png)
+
+![image](https://user-images.githubusercontent.com/16596464/111019716-09cc4c80-83e7-11eb-9337-69f36c0a74c1.png)
+
+![image](https://user-images.githubusercontent.com/16596464/111019714-089b1f80-83e7-11eb-85ef-533be2876082.png)
+
+![image](https://user-images.githubusercontent.com/16596464/111019719-105ac400-83e7-11eb-8c63-306887a43595.png)
+
+![image](https://user-images.githubusercontent.com/16596464/111019727-19e42c00-83e7-11eb-90cb-bc052d6fa0ba.png)
+
+![image](https://user-images.githubusercontent.com/16596464/111019735-1ea8e000-83e7-11eb-9f00-869f9c398e37.png)
+
+![image](https://user-images.githubusercontent.com/16596464/111019722-1355b480-83e7-11eb-9c74-1c6cfde0f5f0.png)
+
+![image](https://user-images.githubusercontent.com/16596464/111019734-1d77b300-83e7-11eb-9c3d-ee39d6e88de5.png)
+
+![image](https://user-images.githubusercontent.com/16596464/111019733-1d77b300-83e7-11eb-87c5-6965a347e1b0.png)
+
+![image](https://user-images.githubusercontent.com/16596464/111019739-236d9400-83e7-11eb-93d7-3123995dfa6b.png)
+
+![image](https://user-images.githubusercontent.com/16596464/111019723-1486e180-83e7-11eb-8715-ae4013282a40.png)
+
+![image](https://user-images.githubusercontent.com/16596464/111019750-28cade80-83e7-11eb-8516-a18d72a71504.png)
+
+![image](https://user-images.githubusercontent.com/16596464/111019742-249ec100-83e7-11eb-8896-e5bb25a0f866.png)
+
+![image](https://user-images.githubusercontent.com/16596464/111019746-26688480-83e7-11eb-8b06-749ec60ddb45.png)
+
+## AWS CLI
+
 ### to create a keypair
 
 `aws ec2 create-key-pair --key-name bestvm-key --query 'KeyMaterial' --output text > bestvm-key.pem`
