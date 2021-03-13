@@ -8,10 +8,11 @@
 - name: Initializing Kubernetes cluster
   shell: |
     kubeadm reset -f
-    kubeadm init --config {{ kubernetes_host_dir }}/conf/kubeadm-config.yml --upload-certs
+    #kubeadm init --config {{ kubernetes_host_dir }}/conf/kubeadm-config.yml --upload-certs
+    sudo kubeadm init --ignore-preflight-errors=all --config /srv/services/kubernetes/conf/kubeadm-config.yml --upload-certs --v=5
   # shell: |
   #   kubeadm reset -f
-  #   kubeadm init --control-plane-endpoint '192.168.120.11:{{ kube_apiserver_frontend_port }}' --upload-certs --apiserver-advertise-address={{ net_internal_ip }} --pod-network-cidr={{ podSubnet }}
+  #sudo kubeadm init --control-plane-endpoint "192.168.120.11:{{ kube_apiserver_frontend_port }}" --upload-certs --apiserver-advertise-address="{{ net_internal_ip }}" --pod-network-cidr="{{ podSubnet }}"
   register: output
   when: cluster_health.rc != 0
 
