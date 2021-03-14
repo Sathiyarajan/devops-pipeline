@@ -1,0 +1,81 @@
+= Couchbase Docker Image
+
+This directory shows how to build a custom Couchbase Docker image that:
+
+. Setups memory for Index and Data
+. Configures the Couchbase server with Index, Data, and Query service
+. Sets up username and password credentials
+
+== Build the Image
+
+```console
+docker build -t arungupta/couchbase .
+```
+
+== Run the Container
+
+```
+docker-compose up -d
+```
+
+== Cluster using Docker Services
+
+. Create network:
++
+```
+docker network create \
+-d overlay \
+couchbase
+```
++
+. Create master: 
++ 
+```
+docker service create \
+--name couchbase-master \
+--replicas 1 \
+-p 8091:8091 \
+--network couchbase \
+-e TYPE=MASTER \
+arungupta/couchbase
+```
++
+. Create worker
++
+```
+docker service create \
+--name couchbase-worker \
+--replicas 1 \
+--network couchbase \
+-e TYPE=WORKER \
+-e COUCHBASE_MASTER=couchbase-master.couchbase \
+-e AUTO_REBALANCE=false \
+arungupta/couchbase
+```
++
+. Scale cluster
++
+```
+docker service scale couchbase-worker=2
+```
+
+== Cluster using Kubernetes
+
+. Create Master RC
++
+```
+kubectl.sh create -f master-service.yml
+```
++
+. Create Worker RC
++
+```
+kubectl.sh create -f worker-service.yml
+```
++
+. Scale cluster
++
+```
+kubectl.sh scale --replicas=3 -f worker-service.yml
+```
+
