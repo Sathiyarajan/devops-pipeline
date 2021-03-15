@@ -1,3 +1,13 @@
+# cloud computing overview
+
+![image](https://user-images.githubusercontent.com/16596464/111073831-4cd11180-8506-11eb-9ce3-8c8da42bfaf4.png)
+
+
+# AWS Overview
+
+![image](https://user-images.githubusercontent.com/16596464/111073697-a553df00-8505-11eb-96c8-397f27bd41fd.png)
+
+
 # AWS Regions
 
 | Region Code        | Region Name       | Availability Zones
