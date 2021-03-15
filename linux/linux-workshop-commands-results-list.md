@@ -1,3 +1,7 @@
+## Linux commands cheatsheet:
+
+![image](https://user-images.githubusercontent.com/16596464/111037912-42ead800-844c-11eb-8f6d-338efc980664.png)
+
 
 # cosmetic commands 
 

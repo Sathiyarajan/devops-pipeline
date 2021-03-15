@@ -10,7 +10,6 @@
 
 ![image](https://user-images.githubusercontent.com/16596464/111093341-a8c78480-855e-11eb-94cd-610f1393d986.png)
 
-
 ### REPOSITORY                           TAG             IMAGE ID       CREATED         SIZE
 
 ```
