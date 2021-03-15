@@ -1,0 +1,9 @@
+= Couchbase Docker Container
+
+== Run Container
+
+docker run -d -p 8091-8093:8091-8093 -p 11210:11210 arungupta/couchbase-server
+
+== Build Image
+
+docker build -t arungupta/couchbase-server .
