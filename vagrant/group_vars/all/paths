@@ -1,0 +1,6 @@
+---
+kubeadm_join_token_path: "{{ playbook_dir }}/tmp/kubeadm_join_token"
+
+kubernetes_host_dir: /srv/services/kubernetes
+etcd_host_dir: /srv/services/etcd
+haproxy_host_dir: /srv/services/haproxy

@@ -1,0 +1,12 @@
+{% for repo in yum_epel_repos %}
+[{{ repo.name }}]
+name={{ repo.description }}
+baseurl={{ repo.baseurl }}
+failovermethod={{ repo.failovermethod|default('priority') }}
+enabled={{ repo.enabled|default(1) }}
+gpgcheck={{ repo.gpgcheck|default(1) }}
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
+{% if yum_epel_proxy %}
+proxy={{ yum_epel_proxy }}
+{% endif %}
+{% endfor %}

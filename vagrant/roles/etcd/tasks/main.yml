@@ -1,0 +1,40 @@
+---
+- name: create directories for etcd
+  file: path="{{ item }}" state=directory
+  with_items:
+    - "{{ etcd_host_dir }}"
+    - "{{ etcd_host_dir }}/data"
+
+- set_fact:
+    cluster: "{{ cluster|default([]) + [ 'etcd-' + hostvars[item].hostname + '=http://' + hostvars[item].net_internal_ip + ':' + etcd_peer_port | string ] }}"
+  with_items: "{{ groups['master-nodes'] }}"
+
+- set_fact:
+    data_dir: "/etcd-data"
+    cluster: "{{ cluster | join(',') }}"
+    cluster_state: "new"
+    token: "asfsd13423sdfsdfg12"
+
+- name: start etcd
+  docker_container:
+    name: etcd
+    state: started
+    restart_policy: unless-stopped
+    image: "quay.io/coreos/etcd:{{ etcd_version }}"
+    command:
+      - "/usr/local/bin/etcd"
+      - "--data-dir={{ data_dir }}"
+      - "--name=etcd-{{ hostname }}"
+      - "--initial-advertise-peer-urls=http://{{ net_internal_ip }}:{{ etcd_peer_port }}"
+      - "--listen-peer-urls=http://0.0.0.0:{{ etcd_peer_port }}"
+      - "--advertise-client-urls=http://{{ net_internal_ip }}:{{ etcd_client_port }}"
+      - "--listen-client-urls=http://0.0.0.0:{{ etcd_client_port }}"
+      - "--initial-cluster={{ cluster }}"
+      - "--initial-cluster-state={{ cluster_state }}"
+      - "--initial-cluster-token={{ token }}"
+    network_mode: host
+    read_only: yes
+    # log_driver: "{{ docker_logging_driver }}"
+    restart: no
+    volumes:
+      - "{{ etcd_host_dir }}/data:{{ data_dir }}"

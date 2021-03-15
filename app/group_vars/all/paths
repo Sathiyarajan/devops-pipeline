@@ -1,0 +1,83 @@
+---
+apache_rp_host_dir: /srv/services/apache-rp
+
+capacityplanning_frontend_host_dir: /srv/services/capacityplanning-frontend
+
+carbon_host_dir: /srv/services/carbon
+
+cassandra_host_dir: /srv/services/cassandra
+cassandra_default_data_path: /var/lib/cassandra/data
+
+checkpoint_ingest_host_dir: /srv/services/checkpoint-ingest
+
+chronos_host_dir: /srv/services/chronos
+
+docker_proxy_host_dir: /srv/services/docker-proxy
+docker_registry_host_dir: /srv/services/docker-registry
+docker_logging_driver: journald
+
+curator_host_dir: /srv/services/elasticsearch-curator
+elasticsearch_config_host_dir: /srv/services/elasticsearch-config
+elasticsearch2_config_host_dir: /srv/services/elasticsearch2-config
+
+es2graphite_host_dir: /srv/services/es2graphite
+
+filebeat_dev_host_dir: /srv/services/filebeat-dev-config
+
+flume_host_dir: /srv/services/flume
+
+gatling_host_dir: /srv/services/gatling
+
+grafana_host_dir: /srv/services/grafana
+
+graphite_web_host_dir: /srv/services/graphite-web
+
+haproxy_host_dir: /srv/services/haproxy
+
+hdfs_datanode_host_dir: /srv/services/hdfs-datanode
+hdfs_namenode_host_dir: /srv/services/hdfs-namenode
+hdfs_namenode_format_host_dir: /srv/services/hdfs-namenode-format
+hadoop_host_dir: /srv/services/hadoop
+
+jenkins_host_dir: /srv/services/jenkins
+jenkins_data_dir: /srv/services/data/jenkins/data
+jenkins_tmp_dir: /srv/services/data/jenkins/tmp
+
+
+
+jmxtrans_host_dir: /srv/services/jmxtrans
+
+kafka_host_dir: /srv/services/kafka
+kafka_connect_host_dir: /srv/services/kafka-connect
+kafka_http_proxy_host_dir: /srv/services/kafka-http-proxy
+kafka_ingester_host_dir: /srv/services/kafka-ingester
+kafka_snmptrap_host_dir: /srv/services/kafka-snmptrap
+kafka_config_host_dir: /srv/services/kafka-config
+
+kibana_host_dir: /srv/services/kibana
+kibana_config_host_dir: /srv/services/kibana-config
+
+logstash_host_dir: /srv/services/logstash
+logstash_apps_host_dir: /srv/services/logstash-apps
+logstash_mapng_host_dir: /srv/services/logstash-mapng
+
+marathon_host_dir: /srv/services/marathon
+
+mesos_master_host_dir: /srv/services/mesos-master
+collectd_mesos_master_host_dir: /srv/services/collectd-mesos-master
+mesos_slave_host_dir: /srv/services/mesos-slave
+collectd_mesos_slave_host_dir: /srv/services/collectd-mesos-slave
+
+mysql_host_dir: /srv/services/mysql
+
+oats_backend_host_dir: /srv/services/oats
+
+smokeping_host_dir: /srv/services/smokeping
+
+spark_host_dir: /srv/services/spark
+
+statsd_host_dir: /srv/services/statsd
+
+zeppelin_host_dir: /srv/services/zeppelin
+
+zookeeper_host_dir: /srv/services/zookeeper

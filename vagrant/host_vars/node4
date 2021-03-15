@@ -1,0 +1,4 @@
+---
+hostname: node4
+int_server_id: 4
+net_internal_ip: 192.168.120.14

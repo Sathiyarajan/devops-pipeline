@@ -1,0 +1,44 @@
+---
+- hosts: all-servers
+  roles:
+    - name: common-packages
+      tags: [base, common-packages]
+
+    - name: network
+      tags: [base, network]
+
+    - name: docker
+      tags: [base, docker]
+
+- hosts: haproxy
+  roles:
+    - name: haproxy
+      tags: [base, network, haproxy]
+
+- hosts: etcd
+  serial: 1
+  roles:
+    - name: etcd
+      tags: [etcd]
+
+- hosts: [master-nodes, worker-nodes]
+  roles:
+    - name: kubernetes
+      tags: [base, kubernetes]
+
+- hosts: master-nodes
+  serial: 1
+  roles:
+    - name: kubernetes-master
+      tags: [kubernetes, kubernetes-master]
+
+- hosts: worker-nodes
+  serial: 1
+  roles:
+    - name: kubernetes-worker
+      tags: [kubernetes, kubernetes-worker]
+
+- hosts: admin-tasks
+  roles:
+    - name: kubernetes-dashboard
+      tags: [kubernetes, kubernetes-dashboard]

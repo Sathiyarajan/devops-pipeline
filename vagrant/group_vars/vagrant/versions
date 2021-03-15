@@ -1,0 +1,6 @@
+---
+expected_ansible_version: 2.5.6
+expected_python_version: 3.6
+
+etcd_version: v3.3.18
+haproxy_version: 1.9.8

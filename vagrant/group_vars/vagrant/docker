@@ -1,0 +1,7 @@
+---
+docker_logging: --log-driver {{docker_logging_driver}} --log-opt tag="{{docker_logging_tag1}}{{docker_logging_tag2}}{{docker_logging_tag3}}"
+docker_logging_driver: journald
+docker_logging_tag1: '{'
+docker_logging_tag2: '{.Name}'
+docker_logging_tag3: '}'
+docker_storage_driver: --storage-driver=overlay

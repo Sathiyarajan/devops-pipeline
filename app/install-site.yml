@@ -1,0 +1,104 @@
+---
+# CentOS 7 Stack Amsible
+# Author: Sathiyarajan M
+# Version: 1.0
+
+
+#- name: Installing elasticsearch in CentOS 7
+#  hosts: dbservers
+#  remote_user: root
+#roles:
+# -  hadoop
+
+- name: define container whitelist and a list of log directories
+  hosts: dbservers
+  tasks:
+    - set_fact:
+        docker_containers_whitelist: []
+        log_dirs: []
+      tags: always
+
+- name: Installing elasticsearch in CentOS 7
+  hosts: dbservers
+  remote_user: root
+  roles:
+   - role:  elasticsearch
+     tags: elastic_tag
+
+- name: Installing elasticsearch in CentOS 7
+  hosts: dbservers
+  remote_user: root
+  roles:
+   - role:  jenkins
+     tags: jenkins_tag
+
+#- name: Installing logstash in CentOS 7
+#  hosts: dbservers
+#  remote_user: root
+
+     #  roles:
+     #   -  logstash
+
+     #- name: Installing kibana in CentOS 7
+     #hosts: dbservers
+     #remote_user: root
+     #roles:
+     #-  kibana
+
+     #- name: Installing xpack in CentOS 7
+     #hosts: dbservers
+     #remote_user: root
+
+     #roles:
+     #-  xpack
+
+     #- name: Installing firewall in CentOS 7
+     #  hosts: dbservers
+     #  remote_user: root
+
+     #  roles:
+     #   -  firewall
+
+     #- name: Installing collect-d in CentOS 7
+     #  hosts: dbservers
+     #  remote_user: root
+
+     #  roles:
+     #   -  collectd
+
+
+     #- name: Installing filebeat in CentOS 7
+     #  hosts: dbservers
+     #  remote_user: root
+
+     #  roles:
+     #   -  filebeat
+
+     #- name: Installing heartbeat in CentOS 7
+     #  hosts: dbservers
+     #  remote_user: root
+
+     #  roles:
+     #   -  heartbeat
+
+     #- name: Installing metricbeat in CentOS 7
+     #  hosts: dbservers
+     #  remote_user: root
+
+     #  roles:
+     #   -  metricbeat
+
+     #- name: Installing packetbeat in CentOS 7
+     #  hosts: dbservers
+     #  remote_user: root
+
+     #  roles:
+     #   -  packetbeat
+
+     #- name: Installing fluentd in CentOS 7
+     #  hosts: dbservers
+     #  remote_user: root
+
+     #  roles:
+     #   -  fluentd
+

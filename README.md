@@ -1,15 +1,63 @@
-# best-project
-sample repository for devops engineers
+# devops-pipeline
 
-# Devops pipeline for UBUNTU 18.04
+
+![DevopsFlow](https://user-images.githubusercontent.com/16596464/111037516-6876e200-844a-11eb-9828-f2a03d777e5c.jpg)
+
+
+### ubuntu subsystem for windows10 # https://www.windowscentral.com/install-windows-subsystem-linux-windows-10
+
+
+# dev environment setup repo for Devops engineers
+
+# Ansible
+
+
+![Ansible](https://user-images.githubusercontent.com/16596464/111037559-9e1bcb00-844a-11eb-926b-b2674eb5aa5b.jpg)
+
+
+### ansible docker image for setting up ansible
+
+`docker build -t sathyadev/ubuntu-ansible:18.04 .`
+
+`sudo docker run --net=host --rm -it -v $(pwd)/app/:/app:ro -v $HOME/.ssh:/root/.ssh 07acb63e26a9 bash`
+
+### to run ansible playbook run the below commands
+
+`ansible-playbook install-site.yml -vv -i hosts`
+
+
+### incaseof any issues, follow the commands
+
+```
+  pip list
+  pip uinstall docker 
+  pip uninstall docker
+  pip install docker==="2.5.1"
+  pip install dockerpty==="0.4.1"
+```
 
 # ssh localhost setup
+
 `ssh localhost`
+
 # if not then setup ssh by running the below commands:
 
 `sudo apt-get install openssh-server openssh-client -y` 
 
 # for local user  
+
+# SSH - secure shell
+
+### ssh localhost setup
+
+`ssh localhost`
+
+### if not then setup ssh by running the below commands:
+
+`sudo apt-get install openssh-server openssh-client -y` 
+
+### for local user  
+
 `cd ~`
 
 `ssh-keygen -t rsa -P ""` (press enter without typing anything)
@@ -18,7 +66,7 @@ sample repository for devops engineers
 
 `ssh localhost`
 
-# for admin user
+### for admin/sudo/root user
 
 `sudo su`
 
@@ -30,13 +78,15 @@ sample repository for devops engineers
 
 `ssh localhost`
 
-# pip 2 & ansible installation
+# pip2 & ansible installation
+
+### pip2 & ansible installation
 
 `sudo apt install python-pip`
 
 `pip install ansible`
 
-# Ansible version check
+### Ansible version check
 
 `ansible --version
 
@@ -49,15 +99,30 @@ ansible 2.8.5
 
 
 # Ansible playbook run
+
+### Ansible playbook run
+
 `git clone https://github.com/Sathiyarajan/best-project.git`
 
 `cd best-project/ansible`
 
 `ansible-playbook install-site.yml -vv -i hosts` 
 
-# docker commands
+# Docker 
+
+### without docker
+![Docker](https://user-images.githubusercontent.com/16596464/111037600-cf949680-844a-11eb-8d31-b15905ed9d10.jpg)
+
+
+### after docker
+
+
+![after-docker](https://user-images.githubusercontent.com/16596464/111037688-3fa31c80-844b-11eb-9531-076df8a35c8a.jpg)
+
+
+### docker installation
  
-# remove older version
+### remove older version
 
 `sudo apt-get remove docker docker-engine docker.io containerd runc`
 
@@ -83,7 +148,7 @@ ansible 2.8.5
 
 `sudo apt-get install docker-ce docker-ce-cli containerd.io`
 
-# to build a code & docker image:
+### to build a code & docker image:
 
 `git clone https://github.com/Sathiyarajan/best-project.git`
 
@@ -113,13 +178,15 @@ Hello World!#
 
 `docker rm -f <containerId>`
 
-# jenkins installation in ubuntu & AWS:
+# Jenkins
+### jenkins installation in ubuntu & AWS:
 
 https://medium.com/@Marklon/how-to-install-jenkins-on-ubuntu-16-04-on-aws-e584c45c2684
 
 https://medium.com/@kryptonian1111/installing-jenkins-on-ec2-9bb51d8bd670
 
-# installation steps
+### installation steps
+
 `sudo apt install default-jdk`
 
 `sudo apt install default-jdk`
@@ -132,11 +199,11 @@ https://medium.com/@kryptonian1111/installing-jenkins-on-ec2-9bb51d8bd670
 
 `sudo apt-get install jenkins`
 
-# to check the status of jenkins installation
+### to check the status of jenkins installation
 
 `sudo systemctl status jenkins`
 
-# enable the 8080 port for Jenkins CI UI
+### enable the 8080 port for Jenkins CI UI
 
 `sudo ufw allow 8080`
 
@@ -144,45 +211,46 @@ https://medium.com/@kryptonian1111/installing-jenkins-on-ec2-9bb51d8bd670
 
 `sudo ufw enable`
 
-# to start jenkins 
+### to start jenkins 
 
 `sudo systemctl start jenkins`
 
-# login to jenkins and proceed with the next steps:
+### login to jenkins and proceed with the next steps:
 
 `https://localhost:8080`
 
-# get the password & proceed with the next steps:
+### get the password & proceed with the next steps:
 
 `sudo cat /var/lib/jenkins/secrets/initialAdminPassword`
 
 
-# git commands:
+# git & git repo commands:
 
-# to download a repo:
+### to download a repo:
 
 `git clone https://github.com/Sathiyarajan/best-project.git`
 
-# to create a branch 
+### to create a branch 
 
 `git checkout -b besant_sathya`
 
-# check the files added
+### check the files added
 
 `git status`
 
-# check the difference between local files & remote git repo files
+### check the difference between local files & remote git repo files
 
 `git diff`
 
-# to add files to a local repo
+### to add files to a local repo
 
 `git add .`
 
-# commit a fies to local repo
+### commit a fies to local repo
 
 `git commit -m "commit message"`
 
-# push the code to remove git repo
+### push the code to remove git repo
 
 `git push origin besant_sathya`
+

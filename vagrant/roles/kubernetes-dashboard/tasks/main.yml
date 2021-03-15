@@ -1,0 +1,18 @@
+---
+
+- name: copy kubernetes configs
+  template: src=templates/{{ item }} dest="{{ kubernetes_host_dir }}/conf/{{ item }}"
+  notify: apply configs
+  with_items:
+    - kubernetes-dashboard.yml
+    - dashboard-adminuser.yml
+
+- meta: flush_handlers
+
+- name: Wait for dashboard service to be ready
+  shell: "kubectl get pods -n kubernetes-dashboard | grep kubernetes-dashboard"
+  register: nodes
+  until:
+    - '" Running " in nodes.stdout'
+  retries: 40
+  delay: 10
