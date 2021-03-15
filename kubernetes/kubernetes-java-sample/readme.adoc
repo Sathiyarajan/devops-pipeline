@@ -1,0 +1,248 @@
+= Kubernetes for Java Developers
+
+== Create Kubernetes Cluster
+
+https://github.com/arun-gupta/kubernetes-java-sample/blob/master/workshop.adoc#create-kubernetes-cluster
+
+== Create Resources
+
+=== Pod
+
+==== Using CLI
+
+. Create pod: `kubectl run wildfly --image=jboss/wildfly --port=8080`
+. Check status: `kubectl get -w pods`
+.. Show the pod name derived from the Deployment name
+. Describe pod: `kubectl describe pod <pod-name>` or `kubectl describe pod/<pod-name>`
+. Get logs: `kubectl logs <pod-name>`
+.. Use `-f` to tail logs
+. Get deployments: `kubectl get deployments`
+. Delete deployments: `kubectl delete deployments/wildfly`
+. Get deployments: `kubectl get deployments`
+. Get pods: `kubectl get pods`
+
+==== Using Configuration File
+
+. Create pod: `kubectl create -f wildfly-pod.yaml`
+. Get pods: `kubectl get pods`
+.. Wide: `kubectl get pods -o wide`
+.. YAML: `kubectl get pods -o yaml`
+.. JSON: `kubectl get pods -o json`
+. Describe pod: `kubectl describe pod/wildfly-pod`
+. Delete pod: `kubectl delete pod/wildfly-pod`
+. Get pods: `kubectl get pods`
+
+=== Replication Controller
+
+. Create RC: `kubectl create -f wildfly-rc.yaml`
+. Get RC: `kubectl get rc`
+. Get pods: `kubectl get pods`
+.. Show pod names
+.. Show image id downloaded on the second host
+. Get pods created by RC: `kubectl describe pods wildfly-rc`
+. Get pods with a specified label: `kubectl get pods -l name=wildfly`
+. Delete RC: `kubectl delete rc wildfly-rc`
+
+=== Service
+
+. Create Service: `kubectl create -f wildfly-service.yaml`
+. Get RC, Service and Pods: `kubectl get rc,service,pods`
+. Describe service: `kubectl describe service wildfly-service`
+. If Kubernetes is on cloud with LB
+.. Get the value of `LoadBalancer Ingress`, access the WildFly landing page at `<IP>:8080`
+. Delete multiple resources: `kubectl delete rc/wildfly-rc service/wildfly-service`
+
+=== Load Balancing
+
+. *ClusterIP*: This is default, exposes service on cluster-internal IP.
+.. Create: `kubectl create -f lb-clusterip.yaml`
+.. Describe: `kubectl get svc`
++
+```
+NAME              CLUSTER-IP    EXTERNAL-IP   PORT(S)    AGE
+kubernetes        100.64.0.1    <none>        443/TCP    48m
+wildfly-service   100.71.85.1   <none>        8080/TCP   13m
+```
++
+Details: `kubectl describe svc wildfly-service`
++
+```
+kubectl describe svc wildfly-service
+Name:			wildfly-service
+Namespace:		default
+Labels:			<none>
+Annotations:		<none>
+Selector:		app=wildfly-rc-pod
+Type:			ClusterIP
+IP:			100.71.85.1
+Port:			web	8080/TCP
+Endpoints:		100.96.1.4:8080,100.96.2.3:8080
+Session Affinity:	None
+Events:			<none>
+```
++
+.. Access: Service is accessible only inside the cluster.
+... Expose the service: `kubectl expose service wildfly-service --port=8080 --target-port=8080 --name=web`
+... Start Kubernetes proxy: `kubectl proxy`
+... Access the service: `curl http://localhost:8001/api/v1/proxy/namespaces/default/services/web/index.html`
+.. Delete:
++
+```
+kubectl delete -f lb-clusterip.yaml
+kubectl delete svc/web
+```
+. *NodePort*: Expose service on each node of the cluster at a static port.
+.. Create: `kubectl create -f lb-nodeport.yaml`
+.. Describe: `kubectl get svc`
++
+```
+NAME              CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+kubernetes        100.64.0.1      <none>        443/TCP          2h
+wildfly-service   100.68.222.70   <nodes>       8080:32233/TCP   29m
+```
++
+Details: `kubectl describe svc wildfly-service`
++
+```
+Name:			wildfly-service
+Namespace:		default
+Labels:			<none>
+Annotations:		<none>
+Selector:		app=wildfly-rc-pod
+Type:			NodePort
+IP:			100.68.222.70
+Port:			web	8080/TCP
+NodePort:		web	32233/TCP
+Endpoints:		100.96.1.13:8080,100.96.2.12:8080
+Session Affinity:	None
+Events:			<none>
+```
++
+.. Access: Service is accessible using `<NodeIP>:<NodePort>`. `<NodePort>` for us is `32233`.
+... Configure the worker node firewall to create a `Custom TCP Rule` to allow port `32233` accessible from `Anywhere`.
+... Find IP address of the worker nodes using AWS Console.
+... Service is accessible at `<worker-node-ip>:32233`.
+.. Delete: `kubectl delete -f lb-nodeport.yaml`
+. *LoadBalancer*: Expose the service using a cloud provider's load balancer.
+.. Create: `kubectl create -f lb-loadbalancer.yaml`
+.. Describe: `kubectl get svc`
++
+```
+NAME              CLUSTER-IP       EXTERNAL-IP        PORT(S)          AGE
+kubernetes        100.64.0.1       <none>             443/TCP          2h
+wildfly-service   100.65.225.120   afa8056b14fc9...   8080:30229/TCP   4s
+```
++
+Details:
++
+```
+Name:			wildfly-service
+Namespace:		default
+Labels:			<none>
+Annotations:		<none>
+Selector:		app=wildfly-rc-pod
+Type:			LoadBalancer
+IP:			100.65.225.120
+LoadBalancer Ingress:	afa8056b14fc911e79b1906d8a9d4b8c-1413998286.us-west-2.elb.amazonaws.com
+Port:			web	8080/TCP
+NodePort:		web	30229/TCP
+Endpoints:		100.96.1.14:8080,100.96.2.13:8080
+Session Affinity:	None
+Events:
+  FirstSeen	LastSeen	Count	From			SubObjectPath	Type		Reason			Message
+  ---------	--------	-----	----			-------------	--------	------			-------
+  11s		11s		1	service-controller			Normal		CreatingLoadBalancer	Creating load balancer
+  8s		8s		1	service-controller			Normal		CreatedLoadBalancer	Created load balancer
+```
+.. Access: Service is accessible at `<LoadBalancer-Ingress>:8080`. Wait for 3 mins for the load balancer to settle before accessing this URL. Firewall rules are created during the service creation.
+.. Delete: `kubectl delete -f lb-loadbalancer.yaml`
+. *ExternalName*: Returns a `CNAME` record to an external service running outside the cluster. Allows for pods within the cluster to access the service outside the cluster. Redirection happens at DNS level, with no proxying or forwarding.
+.. Create
+... Start a https://aws.amazon.com/marketplace/pp/B00NN8XQWU[WildFly bitnami stack]
+... Get IP address of the provisioned host and replace the value in `lb-external.yaml`
+... `kubectl create -f lb-external.yaml`
+.. Describe: `kubectl get svc`:
++
+```
+NAME              CLUSTER-IP   EXTERNAL-IP                                         PORT(S)   AGE
+kubernetes        100.64.0.1   <none>                                              443/TCP   3h
+wildfly-service                ec2-34-210-79-105.us-west-2.compute.amazonaws.com   8080/TCP  2s
+```
++
+Details: `kubectl describe svc/wildfly-service`
++
+```
+Name:			wildfly-service
+Namespace:		default
+Labels:			<none>
+Annotations:		<none>
+Selector:		<none>
+Type:			ExternalName
+IP:			
+External Name:		ec2-34-210-79-105.us-west-2.compute.amazonaws.com
+Port:			web	8080/TCP
+Endpoints:		<none>
+Session Affinity:	None
+Events:			<none>
+```
++
+.. Access: This service is only accessible inside the cluster. `kubectl expose` only work for services with selectors.
+.. Delete: `kubectl delete -f lb-external.yaml`
+
+== Using Maven (Service + Replication Controller + Client Pod)
+
+All the code is in `maven` directory:
+
+. Create Couchbase service: `kubectl create -f couchbase-service.yml`
+. Check status: `kubectl get -w pods`
+. Run application: `kubectl create -f bootiful-couchbase.yml`
+. Check status: `kubectl get -w pods`
+.. Show `ContainerCreating`
+. Show all pods: `kubectl get pods --show-all`
+. Check logs: `kubectl logs -f <pod-name>` to show the output `Book{isbn=978-1-4919-1889-0, name=Minecraft Modding with Forge, cost=29.99}`
+. Delete all resources: `kubectl delete -f couchbase-service.yml -f bootiful-couchbase.yml`
+
+== Rolling Updates
+
+All code in `rolling-update` directory:
+
+https://github.com/arun-gupta/kubernetes-java-sample/tree/master/rolling-update
+
+== Namespaces
+
+. Create a new namespace: `kubectl create -f dev-namespace.yaml`
+. Get namespaces: `kubectl get namespace`
+. Create a new deployment in the namespace: `kubectl --namespace=development run couchbase --image=arungupta/couchbase`
+. List deployments: `kubectl get deployments`
+.. No deployments shown
+. List all resources in the namespace: `kubectl get deployments --namespace=development`
+. List all resources in all namespaces: `kubectl get deployments --all-namespaces`
+. Show pods in the namespaces: `kubectl get pods --all-namespaces`
+
+== Quota (broken)
+
+. Create a constrained resource: `kubectl create -f quota-wildfly.yaml`
+. Check for pods: `kubectl get -w pods`
+. Broken: https://github.com/kubernetes/kubernetes/issues/33621
+
+== Run-once/Batch Jobs
+
+. Create a job: `kubectl create -f runonce-job.yaml`
+. Check jobs: `kubectl get jobs`
+. More details about job: `kubectl describe jobs wait`
+. Check pods: `kubectl get pods`
+. Show all completed pods: `kubectl get pods --show-all`
+
+== Couchbase Cluster
+
+https://github.com/arun-gupta/couchbase-kubernetes/tree/master/cluster
+
+== Daemon Set (work in progress)
+
+. Create a daemon set: `kubectl create -f prometheus-dameonset.yml`
+. 
+
+=== Tips
+
+. Create resources in all `.json`, `.yaml` and `.yml` files in dir: `kubectl create -f ./dir`
+
