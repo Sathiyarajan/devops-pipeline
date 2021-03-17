@@ -16,8 +16,8 @@ The code mentioned in this document are used in the HashiCorp Certified Terrafor
 
 
 
-   [PlDa]: <https://github.com/zealvora/terraform-beginner-to-advanced-resource/blob/master/Section%201%20-%20Deploying%20Infrastructure%20with%20Terraform/first-ec2.md>
-   [PlDb]: <https://github.com/zealvora/terraform-beginner-to-advanced-resource/blob/master/Section%201%20-%20Deploying%20Infrastructure%20with%20Terraform/resp01.md>   
-   [PlDc]: <https://github.com/zealvora/terraform-beginner-to-advanced-resource/blob/master/Section%201%20-%20Deploying%20Infrastructure%20with%20Terraform/github.md>
-   [PlDd]: <https://github.com/zealvora/terraform-beginner-to-advanced-resource/blob/master/Section%201%20-%20Deploying%20Infrastructure%20with%20Terraform/destroy.md>   
-    [PlDe]: <https://github.com/zealvora/terraform-beginner-to-advanced-resource/blob/master/Section%201%20-%20Deploying%20Infrastructure%20with%20Terraform/provider-versioning.md>
+   [PlDa]: <https://github.com/Sathiyarajan/devops-pipeline/blob/main/terraform-aws/section1-deploying-nfrastructure-terraform/first-ec2.md>
+   [PlDb]: <https://github.com/Sathiyarajan/devops-pipeline/blob/main/terraform-aws/section1-deploying-nfrastructure-terraform/resp01.md>   
+   [PlDc]: <https://github.com/Sathiyarajan/devops-pipeline/blob/main/terraform-aws/section1-deploying-nfrastructure-terraform/github.md>
+   [PlDd]: <https://github.com/Sathiyarajan/devops-pipeline/blob/main/terraform-aws/section1-deploying-nfrastructure-terraform/destroy.md>   
+    
