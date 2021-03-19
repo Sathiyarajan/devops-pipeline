@@ -1,7 +1,7 @@
 provider "aws" {
   region     = "ap-south-1"
-  access_key = "XXXXXXXXXXXXXXXXXXXXXXXx"
-  secret_key = "xxxxxxxxxxxxxxxxxxx"
+  access_key = "XXXXXXXXXXXXXXXXXXX"
+  secret_key = "XXXXXXXXXXXXXXXXXX"
 }
 
 resource "aws_db_instance" "default" {
