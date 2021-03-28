@@ -36,23 +36,21 @@ sathya@ubuntu:~$
 ```
 ### mkdir -p $HOME/shell-test
 
-### wget https://archive.apache.org/dist/hadoop/core/hadoop-2.6.5/hadoop-2.6.5.tar.gz
+### wget https://archive.apache.org/dist/maven/maven-2/2.2.1/binaries/apache-maven-2.2.1-bin.tar.gz
 
 ```
-sathya@ubuntu:~/shell-test$ wget https://archive.apache.org/dist/hadoop/core/hadoop-2.6.5/hadoop-2.6.5.tar.gz
---2021-02-21 04:56:18--  https://archive.apache.org/dist/hadoop/core/hadoop-2.6.5/hadoop-2.6.5.tar.gz
+sathya@MAVLT1219:~$ wget https://archive.apache.org/dist/maven/maven-2/2.2.1/binaries/apache-maven-2.2.1-bin.tar.gz
+--2021-03-28 09:46:42--  https://archive.apache.org/dist/maven/maven-2/2.2.1/binaries/apache-maven-2.2.1-bin.tar.gz
 Resolving archive.apache.org (archive.apache.org)... 138.201.131.134, 2a01:4f8:172:2ec5::2
 Connecting to archive.apache.org (archive.apache.org)|138.201.131.134|:443... connected.
 HTTP request sent, awaiting response... 200 OK
-Length: 199635269 (190M) [application/x-gzip]
-Saving to: ‘hadoop-2.6.5.tar.gz’
+Length: 2840961 (2.7M) [application/x-gzip]
+Saving to: ‘apache-maven-2.2.1-bin.tar.gz’
 
-hadoop-2.6.5.tar.gz        100%[=====================================>] 190.39M  8.70MB/s    in 23s
-
-2021-02-21 04:56:41 (8.31 MB/s) - ‘hadoop-2.6.5.tar.gz’ saved [199635269/199635269]
+apache-maven-2.2.1-bin.tar.gz 100%[==============================================>]   2.71M   927KB/s    in 3.0s
 ```
 
-### tar -xvf hadoop-2.6.5.tar.gz
+### tar -xvf apache-maven-2.2.1-bin.tar.gz
 
 
 ### du-hs
@@ -60,10 +58,10 @@ hadoop-2.6.5.tar.gz        100%[=====================================>] 190.39M 
 ```
 sathya@ubuntu:~/shell-test$ du -hs
 506M    .
-sathya@ubuntu:~/shell-test$ du -hs hadoop-2.6.5
+sathya@ubuntu:~/shell-test$ du -hs /home/sathya/apache-maven-2.2.1
 315M    hadoop-2.6.5
-sathya@ubuntu:~/shell-test$ du -hs hadoop-2.6.5.tar.gz
-191M    hadoop-2.6.5.tar.gz
+sathya@ubuntu:~/shell-test$ du -hs apache-maven-2.2.1-bin.tar.gz
+1.1M    apache-maven-2.2.1-bin.tar.gz
 sathya@ubuntu:~/shell-test$
 ```
 ### mkdir -p
