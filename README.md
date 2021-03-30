@@ -10,13 +10,13 @@
 
 `ssh localhost`
 
-# if not then setup ssh by running the below commands:
+### if not then setup ssh by running the below commands:
 
 `sudo apt-get install openssh-server openssh-client -y` 
 
-# for local user  
+### for local user  
 
-# SSH - secure shell
+### SSH - secure shell
 
 ### ssh localhost setup
 
@@ -49,9 +49,9 @@
 `ssh localhost`
 
 
-# dev environment setup repo for Devops engineers
+## dev environment setup repo for Devops engineers
 
-# Ansible
+## Ansible architecture
 
 
 ![Ansible](https://user-images.githubusercontent.com/16596464/111037559-9e1bcb00-844a-11eb-926b-b2674eb5aa5b.jpg)
