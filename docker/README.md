@@ -3,6 +3,15 @@ sample repository for devops engineers
 
 # Devops pipeline for UBUNTU 18.04
 
+# Docker overview
+
+### without docker
+![Docker](https://user-images.githubusercontent.com/16596464/111037600-cf949680-844a-11eb-8d31-b15905ed9d10.jpg)
+
+### after docker
+
+![after-docker](https://user-images.githubusercontent.com/16596464/111037688-3fa31c80-844b-11eb-9531-076df8a35c8a.jpg)
+
 # docker commands
  
 # docker installation remove older version
