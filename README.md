@@ -48,38 +48,13 @@
 
 `ssh localhost`
 
-
-## dev environment setup repo for Devops engineers
-
-## Ansible architecture
-
-
-![Ansible](https://user-images.githubusercontent.com/16596464/111037559-9e1bcb00-844a-11eb-926b-b2674eb5aa5b.jpg)
-
-
-### ansible docker image for setting up ansible
+### setting up ansible via docker 
 
 `docker build -t sathyadev/ubuntu-ansible:18.04 .`
 
 `sudo docker run --net=host --rm -it -v $(pwd)/app/:/app:ro -v $HOME/.ssh:/root/.ssh 07acb63e26a9 bash`
 
-### to run ansible playbook run the below commands
-
-`ansible-playbook install-site.yml -vv -i hosts`
-
-### incaseof any issues, follow the commands
-
-```
-  pip list
-  pip uinstall docker 
-  pip uninstall docker
-  pip install docker==="2.5.1"
-  pip install dockerpty==="0.4.1"
-```
-
-# pip2 & ansible installation
-
-### pip2 & ansible installation
+### pip2 & ansible installation for ubuntu
 
 `sudo apt install python-pip`
 
@@ -97,6 +72,7 @@ ansible 2.8.5
   executable location = /usr/local/bin/ansible
   python version = 2.7.17 (default, Sep 30 2020, 13:38:04) [GCC 7.5.0]
   ```
+  
 ### Ansible playbook run
 
 `git clone https://github.com/Sathiyarajan/devops-pipeline.git`
@@ -105,17 +81,16 @@ ansible 2.8.5
 
 `ansible-playbook install-site.yml -vv -i hosts` 
 
-# Docker 
 
-### without docker
-![Docker](https://user-images.githubusercontent.com/16596464/111037600-cf949680-844a-11eb-8d31-b15905ed9d10.jpg)
+### incaseof any issues, follow the commands
 
-
-### after docker
-
-
-![after-docker](https://user-images.githubusercontent.com/16596464/111037688-3fa31c80-844b-11eb-9531-076df8a35c8a.jpg)
-
+```
+  pip list
+  pip uinstall docker 
+  pip uninstall docker
+  pip install docker==="2.5.1"
+  pip install dockerpty==="0.4.1"
+```
 
 ### docker installation
  
