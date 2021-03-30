@@ -6,36 +6,6 @@
 
 ### ubuntu subsystem for windows10 # https://www.windowscentral.com/install-windows-subsystem-linux-windows-10
 
-
-# dev environment setup repo for Devops engineers
-
-# Ansible
-
-
-![Ansible](https://user-images.githubusercontent.com/16596464/111037559-9e1bcb00-844a-11eb-926b-b2674eb5aa5b.jpg)
-
-
-### ansible docker image for setting up ansible
-
-`docker build -t sathyadev/ubuntu-ansible:18.04 .`
-
-`sudo docker run --net=host --rm -it -v $(pwd)/app/:/app:ro -v $HOME/.ssh:/root/.ssh 07acb63e26a9 bash`
-
-### to run ansible playbook run the below commands
-
-`ansible-playbook install-site.yml -vv -i hosts`
-
-
-### incaseof any issues, follow the commands
-
-```
-  pip list
-  pip uinstall docker 
-  pip uninstall docker
-  pip install docker==="2.5.1"
-  pip install dockerpty==="0.4.1"
-```
-
 # ssh localhost setup
 
 `ssh localhost`
@@ -78,6 +48,35 @@
 
 `ssh localhost`
 
+
+# dev environment setup repo for Devops engineers
+
+# Ansible
+
+
+![Ansible](https://user-images.githubusercontent.com/16596464/111037559-9e1bcb00-844a-11eb-926b-b2674eb5aa5b.jpg)
+
+
+### ansible docker image for setting up ansible
+
+`docker build -t sathyadev/ubuntu-ansible:18.04 .`
+
+`sudo docker run --net=host --rm -it -v $(pwd)/app/:/app:ro -v $HOME/.ssh:/root/.ssh 07acb63e26a9 bash`
+
+### to run ansible playbook run the below commands
+
+`ansible-playbook install-site.yml -vv -i hosts`
+
+### incaseof any issues, follow the commands
+
+```
+  pip list
+  pip uinstall docker 
+  pip uninstall docker
+  pip install docker==="2.5.1"
+  pip install dockerpty==="0.4.1"
+```
+
 # pip2 & ansible installation
 
 ### pip2 & ansible installation
@@ -88,23 +87,21 @@
 
 ### Ansible version check
 
-`ansible --version
+```
+ansible --version
 
 ansible 2.8.5
   config file = /etc/ansible/ansible.cfg
   configured module search path = [u'/root/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
   ansible python module location = /usr/local/lib/python2.7/dist-packages/ansible
   executable location = /usr/local/bin/ansible
-  python version = 2.7.17 (default, Sep 30 2020, 13:38:04) [GCC 7.5.0]`
-
-
-# Ansible playbook run
-
+  python version = 2.7.17 (default, Sep 30 2020, 13:38:04) [GCC 7.5.0]
+  ```
 ### Ansible playbook run
 
-`git clone https://github.com/Sathiyarajan/best-project.git`
+`git clone https://github.com/Sathiyarajan/devops-pipeline.git`
 
-`cd best-project/ansible`
+`cd devops-pipeline/ansible`
 
 `ansible-playbook install-site.yml -vv -i hosts` 
 
@@ -150,9 +147,9 @@ ansible 2.8.5
 
 ### to build a code & docker image:
 
-`git clone https://github.com/Sathiyarajan/best-project.git`
+`git clone https://github.com/Sathiyarajan/devops-pipeline.git`
 
-`cd best-project/docker`
+`cd devops-pipeline/docker`
 
 `docker build -t <dockerhub_username>/flaskapp:1.1 .`
 
@@ -178,12 +175,12 @@ Hello World!#
 
 `docker rm -f <containerId>`
 
+
+
 # Jenkins
-### jenkins installation in ubuntu & AWS:
+### jenkins installation in ubuntu:
 
 https://medium.com/@Marklon/how-to-install-jenkins-on-ubuntu-16-04-on-aws-e584c45c2684
-
-https://medium.com/@kryptonian1111/installing-jenkins-on-ec2-9bb51d8bd670
 
 ### installation steps
 
@@ -222,6 +219,7 @@ https://medium.com/@kryptonian1111/installing-jenkins-on-ec2-9bb51d8bd670
 ### get the password & proceed with the next steps:
 
 `sudo cat /var/lib/jenkins/secrets/initialAdminPassword`
+
 
 
 # git & git repo commands:
