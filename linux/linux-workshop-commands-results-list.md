@@ -34,7 +34,7 @@ Building dependency tree
 Reading state information... Done
 sathya@ubuntu:~$
 ```
-### mkdir -p $HOME/shell-test
+### mkdir -p test/test/shell-test
 
 ### wget https://archive.apache.org/dist/maven/maven-2/2.2.1/binaries/apache-maven-2.2.1-bin.tar.gz
 
