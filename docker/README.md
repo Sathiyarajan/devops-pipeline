@@ -79,3 +79,12 @@ docker run --name postgres-petclinic -e POSTGRES_PASSWORD=petclinic -e POSTGRES_
 docker run -p 8080:8080 springcommunity/spring-framework-petclinic
 
 # practice the image build & push it to repo by following the nodejs app
+
+
+
+# docker-compose spring boot app with multiple instances
+
+```
+https://thepracticaldeveloper.com/dockerize-spring-boot/
+https://github.com/mechero/spring-boot-hola-docker
+```
